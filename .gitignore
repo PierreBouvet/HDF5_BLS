@@ -68,8 +68,14 @@ instance/
 # Scrapy stuff:
 .scrapy
 
+# VSCode
+.vscode/
+
 # Sphinx documentation
 docs/_build/
+docs/_templates/
+docs/Tutorial/html 
+docs/Tutorial/latex
 
 # PyBuilder
 .pybuilder/

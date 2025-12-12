@@ -1,7 +1,0 @@
-{
-    "python.analysis.extraPaths": [
-        "/Users/pierrebouvet/Documents/Code/Project_HDF5_BLS/HDF5_BLS/src",
-        "/Users/pierrebouvet/Documents/Code/Project_HDF5_BLS/HDF5_BLS_treat/src",
-        "/Users/pierrebouvet/Documents/Code/Project_HDF5_BLS/HDF5_BLS_analyse/src"
-    ]
-}
