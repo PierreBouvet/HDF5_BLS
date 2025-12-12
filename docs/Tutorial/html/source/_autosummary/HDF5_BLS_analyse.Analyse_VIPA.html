@@ -1,0 +1,290 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HDF5_BLS_analyse.Analyse_VIPA &mdash; HDF5_BLS v1.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=f8b40d97" />
+
+  
+    <link rel="shortcut icon" href="../../_static/myicon.png"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e562d664"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="HDF5_BLS_treat" href="../summary_HDF5_BLS_treat.html" />
+    <link rel="prev" title="HDF5_BLS_analyse.Analyse_general" href="HDF5_BLS_analyse.Analyse_general.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HDF5_BLS
+              <img src="../../_static/myicon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The HDF5\_BLS project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_nutshell.html">The project in a nutshell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project.html">Project development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_format.html">The file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../normalization.html">Normalization rules for the BioBrillouin community</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_package.html">The HDF5_BLS package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_processing.html">Data Processing with HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_analyse_package.html">The HDF5_BLS_analyse package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_treat_package.html">The HDF5_BLS_treat package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer/presentation.html">Presentation of the project for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/setup.html">Setting up the development environment on Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/add_file_format.html">Adding a new file format to the HDF5_BLS library</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../summary_HDF5_BLS.html">HDF5_BLS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../summary_HDF5_BLS_analyse.html">HDF5_BLS_analyse</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="HDF5_BLS_analyse.Analyse_backend.html">HDF5_BLS_analyse.Analyse_backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HDF5_BLS_analyse.Analyse_general.html">HDF5_BLS_analyse.Analyse_general</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HDF5_BLS_analyse.Analyse_VIPA</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../summary_HDF5_BLS_treat.html">HDF5_BLS_treat</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HDF5_BLS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../summary_HDF5_BLS_analyse.html">HDF5_BLS_analyse</a></li>
+      <li class="breadcrumb-item active">HDF5_BLS_analyse.Analyse_VIPA</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/_autosummary/HDF5_BLS_analyse.Analyse_VIPA.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hdf5-bls-analyse-analyse-vipa">
+<h1>HDF5_BLS_analyse.Analyse_VIPA<a class="headerlink" href="#hdf5-bls-analyse-analyse-vipa" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="HDF5_BLS_analyse.Analyse_VIPA">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">HDF5_BLS_analyse.</span></span><span class="sig-name descname"><span class="pre">Analyse_VIPA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_analyse/VIPA.html#Analyse_VIPA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_analyse.Analyse_VIPA" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="HDF5_BLS_analyse.Analyse_general.html#HDF5_BLS_analyse.Analyse_general" title="HDF5_BLS_analyse.general.Analyse_general"><code class="xref py py-class docutils literal notranslate"><span class="pre">Analyse_general</span></code></a></p>
+<p>This class is a child class of Analyse_general. It inherits all the methods of the parent class and adds the functions specific to VIPA spectrometers.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_analyse.Analyse_VIPA.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_analyse/VIPA.html#Analyse_VIPA.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_analyse.Analyse_VIPA.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the class with the most basic attributes: the ordinates and abscissa of the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>array</em>) – The array of ordinates of the data</p></li>
+<li><p><strong>x</strong> (<em>array</em><em>, </em><em>optional</em>) – The array of abscissa of the data. If None, the abscissa is just the index of the points in ordinates.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_analyse.Analyse_VIPA.__init__" title="HDF5_BLS_analyse.Analyse_VIPA.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(x, y)</p></td>
+<td><p>Initializes the class with the most basic attributes: the ordinates and abscissa of the data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_analyse.Analyse_VIPA.add_point" title="HDF5_BLS_analyse.Analyse_VIPA.add_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point</span></code></a>([position_center_window, ...])</p></td>
+<td><p>Adds a single point to the list of points together with a window to the list of windows with its type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_analyse.Analyse_VIPA.center_x_axis" title="HDF5_BLS_analyse.Analyse_VIPA.center_x_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">center_x_axis</span></code></a>([center_type])</p></td>
+<td><p>Centers the x axis using the first points stored in the class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_analyse.Analyse_VIPA.interpolate_between_one_order" title="HDF5_BLS_analyse.Analyse_VIPA.interpolate_between_one_order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate_between_one_order</span></code></a>([FSR])</p></td>
+<td><p>Creates a frequency axis by using the signal between two elastic peaks included.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_analyse.Analyse_VIPA.interpolate_elastic" title="HDF5_BLS_analyse.Analyse_VIPA.interpolate_elastic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate_elastic</span></code></a>([FSR])</p></td>
+<td><p>Uses positions of the elastic peaks on the different orders, to obtain a frequency axis by interpolating the position of the peaks with a quadratic polynomial.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_analyse.Analyse_VIPA.interpolate_elastic_inelastic" title="HDF5_BLS_analyse.Analyse_VIPA.interpolate_elastic_inelastic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate_elastic_inelastic</span></code></a>([shift, FSR])</p></td>
+<td><p>Uses the elastic peaks, and the positions of the Brillouin peaks on the different orders to obtain a frequency axis by interpolating the position of the peaks with a quadratic polynomial.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_analyse.Analyse_VIPA.interpolate_on_one_order" title="HDF5_BLS_analyse.Analyse_VIPA.interpolate_on_one_order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate_on_one_order</span></code></a>([shift])</p></td>
+<td><p>Uses positions of one elastic peak and associated Brillouin doublet to obtain a frequency axis by interpolating the position of the peak with a quadratic polynomial.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_x_y</span></code>(x, y)</p></td>
+<td><p>Sets the x and y values of the data</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_clear_points</span></code>()</p></td>
+<td><p>Clears the list of points and the list of windows.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_create_algorithm</span></code>([algorithm_name, ...])</p></td>
+<td><p>Creates a new JSON algorithm with the given name, version, author and description.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_move_step</span></code>(step, new_step)</p></td>
+<td><p>Moves a step from one position to another in the _algorithm attribute.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_open_algorithm</span></code>([filepath, algorithm_str])</p></td>
+<td><p>Opens an existing JSON algorithm and stores it in the _algorithm attribute.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_remove_step</span></code>([step])</p></td>
+<td><p>Removes the step from the _history attribute of the class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_return_string_algorithm</span></code>()</p></td>
+<td><p>Returns a string representation of the algorithm stored in the _algorithm attribute of the class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_run_algorithm</span></code>([step])</p></td>
+<td><p>Runs the algorithm stored in the _algorithm attribute of the class up to the given step (included).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_save_algorithm</span></code>([filepath, ...])</p></td>
+<td><p>Saves the algorithm to a JSON file with or without the parameters used.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_analyse.Analyse_VIPA.add_point">
+<span class="sig-name descname"><span class="pre">add_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position_center_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_pnt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Elastic'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_analyse/VIPA.html#Analyse_VIPA.add_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_analyse.Analyse_VIPA.add_point" title="Link to this definition"></a></dt>
+<dd><p>Adds a single point to the list of points together with a window to the list of windows with its type. Each point is an intensity extremum obtained by fitting a quadratic polynomial to the windowed data.
+The point is given as a value on the x axis (not a position).
+The “position_center_window” parameter is the center of the window surrounding the peak. The “window_width” parameter is the width of the window surrounding the peak (full width). The “type_pnt” parameter is the type of the peak. It can be either “Stokes”, “Anti-Stokes” or “Elastic”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>position_center_window</strong> (<em>float</em>) – A value on the self.x axis corresponding to the center of a window surrounding a peak</p></li>
+<li><p><strong>window</strong> (<em>float</em>) – A value on the self.x axis corresponding to the width of a window surrounding a peak</p></li>
+<li><p><strong>type_pnt</strong> (<em>str</em>) – The nature of the peak. Must be one of the following: “Stokes”, “Anti-Stokes” or “Elastic”</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_analyse.Analyse_VIPA.center_x_axis">
+<span class="sig-name descname"><span class="pre">center_x_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_analyse/VIPA.html#Analyse_VIPA.center_x_axis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_analyse.Analyse_VIPA.center_x_axis" title="Link to this definition"></a></dt>
+<dd><p>Centers the x axis using the first points stored in the class. The parameter “center_type” is used to determine wether to center the axis using the first elastic peak (center_type = “Elastic”) or the average of two Stokes and Anti-Stokes peaks (center_type = “Inelastic”).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>center_type</strong> (<em>str</em>) – The type of the peak to center the x axis around. Must be either “Elastic” or “Inelastic”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_analyse.Analyse_VIPA.interpolate_between_one_order">
+<span class="sig-name descname"><span class="pre">interpolate_between_one_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FSR</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_analyse/VIPA.html#Analyse_VIPA.interpolate_between_one_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_analyse.Analyse_VIPA.interpolate_between_one_order" title="Link to this definition"></a></dt>
+<dd><p>Creates a frequency axis by using the signal between two elastic peaks included. By imposing that the distance in frequency between two neighboring elastic peaks is one FSR, and that the shift of both stokes and anti-stokes peaks to their respective elastic peak is the same, we can obtain a frequency axis. The user has to enter a value for the FSR to calibrate the frequency axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>FSR</strong> (<em>float</em>) – The free spectral range of the VIPA spectrometer (in GHz).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_analyse.Analyse_VIPA.interpolate_elastic">
+<span class="sig-name descname"><span class="pre">interpolate_elastic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FSR</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_analyse/VIPA.html#Analyse_VIPA.interpolate_elastic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_analyse.Analyse_VIPA.interpolate_elastic" title="Link to this definition"></a></dt>
+<dd><p>Uses positions of the elastic peaks on the different orders, to obtain a frequency axis by interpolating the position of the peaks with a quadratic polynomial. The user has to enter a value for the FSR to calibrate the frequency axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>FSR</strong> (<em>float</em>) – The free spectral range of the VIPA spectrometer (in GHz).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_analyse.Analyse_VIPA.interpolate_elastic_inelastic">
+<span class="sig-name descname"><span class="pre">interpolate_elastic_inelastic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FSR</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_analyse/VIPA.html#Analyse_VIPA.interpolate_elastic_inelastic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_analyse.Analyse_VIPA.interpolate_elastic_inelastic" title="Link to this definition"></a></dt>
+<dd><p>Uses the elastic peaks, and the positions of the Brillouin peaks on the different orders to obtain a frequency axis by interpolating the position of the peaks with a quadratic polynomial. The user can either enter a value for the shift or the FSR, or both. The shift value is used to calibrate the frequency axis using known values of shifts when using a calibration sample to obtain the frequency axis. The FSR value is used to calibrate the frequency axis using a known values of FSR for the VIPA.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shift</strong> (<em>float</em>) – The shift between the elastic and inelastic peaks (in GHz).</p></li>
+<li><p><strong>FSR</strong> (<em>float</em>) – The free spectral range of the VIPA spectrometer (in GHz).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_analyse.Analyse_VIPA.interpolate_on_one_order">
+<span class="sig-name descname"><span class="pre">interpolate_on_one_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_analyse/VIPA.html#Analyse_VIPA.interpolate_on_one_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_analyse.Analyse_VIPA.interpolate_on_one_order" title="Link to this definition"></a></dt>
+<dd><p>Uses positions of one elastic peak and associated Brillouin doublet to obtain a frequency axis by interpolating the position of the peak with a quadratic polynomial. The user has to enter a value for the Brillouin shift to calibrate the frequency axis. By default, this value is set to 1 so that the measured frequencies are normalized to the calibration sample.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shift</strong> (<em>float</em>) – The frequency shift between the elastic and inelastic peaks (in GHz). By default 1.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="HDF5_BLS_analyse.Analyse_general.html" class="btn btn-neutral float-left" title="HDF5_BLS_analyse.Analyse_general" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../summary_HDF5_BLS_treat.html" class="btn btn-neutral float-right" title="HDF5_BLS_treat" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pierre Bouvet.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

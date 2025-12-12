@@ -1,0 +1,535 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HDF5_BLS_analyse.analyse_backend &mdash; HDF5_BLS v1.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="shortcut icon" href="../../_static/myicon.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e562d664"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HDF5_BLS
+              <img src="../../_static/myicon.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../source/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/file_format.html">The file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/hdf5_bls_package.html">The HDF5_BLS package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/data_processing.html">Data Processing with HDF5_BLS</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../source/summary_HDF5_BLS.html">HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/summary_HDF5_BLS_analyse.html">HDF5_BLS_analyse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/summary_HDF5_BLS_treat.html">HDF5_BLS_treat</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HDF5_BLS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">HDF5_BLS_analyse.analyse_backend</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for HDF5_BLS_analyse.analyse_backend</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<div class="viewcode-block" id="Analyse_backend">
+<a class="viewcode-back" href="../../source/_autosummary/HDF5_BLS_analyse.Analyse_backend.html#HDF5_BLS_analyse.Analyse_backend">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Analyse_backend</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This class is the base class for all the analyse classes. It provides a common interface for all the classes. Its purpose is to provide the basic silent functions to open, create and save algorithms, and to store the different steps of the analysis and their effects on the data.</span>
+<span class="sd">    The philosophy of this class is to rely on 4 attributes that will be changed by the different functions of the class:</span>
+<span class="sd">    - x: the x-axis of the data</span>
+<span class="sd">    - y: the y-axis of the data</span>
+<span class="sd">    - points: a list of remarkable points in the data where each point is a 2-list of the form [position, type]</span>
+<span class="sd">    - windows: a list of windows in the data where each window is a 2-list of the form [start, end]</span>
+<span class="sd">    And to store the different steps of the analysis and their effects on the data:</span>
+<span class="sd">    - _algorithm: a dictionary that stores the name of the algorithm, its version, the author, and a description</span>
+<span class="sd">    - _history: a list that stores the evolution of the 4 main attributes of the class with the steps of the analysis.</span>
+<span class="sd">    The data is defined by 2 1-D arrays: x and y. Additionally, remarkable points and windows are stored in the points and windows attributes.</span>
+<span class="sd">    Algorithm steps are stored in 2 attributes: _algorithm and _history. The _algorithm attribute is a dictionary that stores the name of the algorithm, its version, the author, and a description. The _history attribute is a list that stores the steps of the analysis and their effects on the data.</span>
+<span class="sd">    The _execute attribute is a boolean that indicates whether the analysis should be executed or not. It is set to True by default. The _auto_run attribute is a boolean that indicates whether the analysis should be executed automatically or not. It is set to False by default.</span>
+<span class="sd">    As a general rule, we encourage developers not to modify any of the underscore-prefixed attributes. These attributes are meant to be used internally by the mother class to run, save, and load the analysis and its history.</span>
+<span class="sd">    All the functions of the class are functions with a zero-argument call signature that returns None. This means that the parameters of the methods of the children class need to be kew-word arguments, and that if no value for these arguments are given, the default value of the arguments leads the function to do nothing. This specificality ensures the modulability of the class.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : np.ndarray</span>
+<span class="sd">        The x-axis of the data.</span>
+<span class="sd">    y : np.ndarray</span>
+<span class="sd">        The y-axis of the data.</span>
+<span class="sd">    points : list of 2-list</span>
+<span class="sd">        A list of remarkable points in the data where each point is a 2-list of the form [position, type].</span>
+<span class="sd">    windows : list of 2-list</span>
+<span class="sd">        A list of windows in the data where each window is a 2-list of the form [start, end].</span>
+<span class="sd">    _algorithm : dict</span>
+<span class="sd">        The algorithm used to analyse the data.</span>
+<span class="sd">    _history : list</span>
+<span class="sd">        The history of the analysis.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_record_algorithm</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># This attribute is used to record the steps of the analysis</span>
+    <span class="n">_save_history</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># This attribute is used to save the effects of the steps of the analysis on the data</span>
+
+<div class="viewcode-block" id="Analyse_backend.__init__">
+<a class="viewcode-back" href="../../source/_autosummary/HDF5_BLS_analyse.Analyse_backend.html#HDF5_BLS_analyse.Analyse_backend.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the class with the most basic attributes: the ordinates and abscissa of the data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y : array</span>
+<span class="sd">            The array of ordinates of the data</span>
+<span class="sd">        x : array, optional</span>
+<span class="sd">            The array of abscissa of the data. If None, the abscissa is just the index of the points in ordinates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">windows</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_history_base</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This function is used to override the __getattribute__ function of the class. It is used to keep track of the history of the algorithm, its impact on the classes attributes, and to store the algorithm in the _algorithm attribute so as to be able to save it or run it later.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of a function of the class.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        The result of the function call.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># If the attribute is a function, we call it with the given arguments</span>
+        <span class="n">attribute</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;silent_&#39;</span><span class="p">):</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="c1"># Extract the description of the function from the docstring</span>
+                <span class="n">docstring</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getdoc</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="n">docstring</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">docstring</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+
+                <span class="c1"># Get the default parameter values from the function signature</span>
+                <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span>
+                <span class="n">default_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">signature</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span>
+                <span class="p">}</span>
+
+                <span class="c1"># Merge default kwargs with provided kwargs</span>
+                <span class="n">merged_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">default_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
+
+                <span class="c1"># If the attribute _record_algorithm is True, add the function to the algorithm</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_record_algorithm</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="s2">&quot;functions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+                        <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="n">merged_kwargs</span><span class="p">,</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span>
+                    <span class="p">})</span>
+
+                <span class="c1"># Store the attributes of the class in memory to compare them to the ones after the function is run</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_history</span><span class="p">:</span>
+                    <span class="n">temp_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="n">temp_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="n">temp_points</span> <span class="o">=</span> <span class="p">[[</span><span class="n">p</span><span class="p">,</span> <span class="n">tp</span><span class="p">]</span> <span class="k">for</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">tp</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">]</span>
+                    <span class="n">temp_windows</span> <span class="o">=</span> <span class="p">[[</span><span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">]</span> <span class="k">for</span> <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">windows</span><span class="p">]</span>
+
+                <span class="c1"># Run the function</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">attribute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+                <span class="c1"># If the attribute _save_history is True, compare the attributes of the class with the ones stored in memory and update the history if needed</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_history</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">})</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">temp_x</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">==</span> <span class="n">temp_y</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">!=</span> <span class="n">temp_points</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">==</span> <span class="p">[]:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;points&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;points&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">windows</span> <span class="o">!=</span> <span class="n">temp_windows</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">windows</span> <span class="o">==</span> <span class="p">[]:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;windows&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="k">else</span><span class="p">:</span>    
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;windows&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="c1"># This is to store the initial value of the x and y arrays</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history_base</span><span class="p">)</span>
+                
+                <span class="k">return</span> <span class="n">result</span>
+            <span class="k">return</span> <span class="n">wrapper</span>
+        <span class="k">return</span> <span class="n">attribute</span>
+
+<div class="viewcode-block" id="Analyse_backend.silent_create_algorithm">
+<a class="viewcode-back" href="../../source/_autosummary/HDF5_BLS_analyse.Analyse_backend.html#HDF5_BLS_analyse.Analyse_backend.silent_create_algorithm">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">silent_create_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span><span class="s2">&quot;Unnamed Algorithm&quot;</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span> <span class="n">author</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a new JSON algorithm with the given name, version, author and description. This algorithm is stored in the _algorithm attribute. This function also creates an empty history. for the software.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algorithm_name : str, optional</span>
+<span class="sd">            The name of the algorithm, by default &quot;Unnamed Algorithm&quot;</span>
+<span class="sd">        version : str, optional</span>
+<span class="sd">            The version of the algorithm, by default &quot;0.1&quot;</span>
+<span class="sd">        author : str, optional</span>
+<span class="sd">            The author of the algorithm, by default &quot;Unknown&quot;</span>
+<span class="sd">        description : str, optional</span>
+<span class="sd">            The description of the algorithm, by default &quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">algorithm_name</span><span class="p">,</span>
+            <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n">version</span><span class="p">,</span>
+            <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="n">author</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
+            <span class="s2">&quot;functions&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">}</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="Analyse_backend.silent_move_step">
+<a class="viewcode-back" href="../../source/_autosummary/HDF5_BLS_analyse.Analyse_backend.html#HDF5_BLS_analyse.Analyse_backend.silent_move_step">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">silent_move_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">new_step</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Moves a step from one position to another in the _algorithm attribute. Deletes the elements of the _history attribute that are after the moved step (included)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        step : int</span>
+<span class="sd">            The position of the function to move in the _algorithm attribute.</span>
+<span class="sd">        new_step : int</span>
+<span class="sd">            The new position to move the function to.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Moves the step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="s2">&quot;functions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">new_step</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="s2">&quot;functions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">step</span><span class="p">))</span>
+
+        <span class="c1"># Deletes the elements of the _history attribute that are after the moved step (included)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">new_step</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[:</span><span class="n">new_step</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Analyse_backend.silent_open_algorithm">
+<a class="viewcode-back" href="../../source/_autosummary/HDF5_BLS_analyse.Analyse_backend.html#HDF5_BLS_analyse.Analyse_backend.silent_open_algorithm">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">silent_open_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">algorithm_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Opens an existing JSON algorithm and stores it in the _algorithm attribute. This function also creates an empty history.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filepath : str, optional</span>
+<span class="sd">            The filepath to the JSON algorithm, by default None</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="c1"># Delete the _algorithm attribute</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span>
+        <span class="k">except</span><span class="p">:</span> 
+            <span class="k">pass</span>
+
+        <span class="c1"># Open the JSON file, stores it in the _algorithm attribute and creates an empty history</span>
+        <span class="k">if</span> <span class="n">filepath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">algorithm_str</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">algorithm_str</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="Analyse_backend.silent_remove_step">
+<a class="viewcode-back" href="../../source/_autosummary/HDF5_BLS_analyse.Analyse_backend.html#HDF5_BLS_analyse.Analyse_backend.silent_remove_step">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">silent_remove_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Removes the step from the _history attribute of the class. If no step is given, removes the last step.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        step : int, optional</span>
+<span class="sd">            The number of the function up to which the algorithm has to be run. Default is None, means that the last step is removed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># If no step is given, set the step to the last step</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="s2">&quot;functions&quot;</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span>
+
+        <span class="c1"># Ensures that the step is within the range of the functions list</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">step</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="s2">&quot;functions&quot;</span><span class="p">]):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The step parameter has to be a positive integer smaller than the number of functions (here </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="s1">&#39;functions&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Removes the step from the _algorithm attribute</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="s2">&quot;functions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+
+        <span class="c1"># Removes all steps after the removed step (included) from the _history attribute</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">step</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[:</span><span class="n">step</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Analyse_backend.silent_run_algorithm">
+<a class="viewcode-back" href="../../source/_autosummary/HDF5_BLS_analyse.Analyse_backend.html#HDF5_BLS_analyse.Analyse_backend.silent_run_algorithm">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">silent_run_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs the algorithm stored in the _algorithm attribute of the class up to the given step (included). If no step is given, the algorithm is run up to the last step.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        step : int, optional</span>
+<span class="sd">            The number of the function up to which the algorithm has to be run (included), by default None means that all the steps of the algorithm are run.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">run_step_save_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Runs the algorithm stored in the _algorithm attribute of the class. This function can also run up to a specific step of the algorithm.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            step : int</span>
+<span class="sd">                The number of the function up to which the algorithm has to be run.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_save_history</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">function_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="s2">&quot;functions&quot;</span><span class="p">][</span><span class="n">step</span><span class="p">][</span><span class="s2">&quot;function&quot;</span><span class="p">]</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="s2">&quot;functions&quot;</span><span class="p">][</span><span class="n">step</span><span class="p">][</span><span class="s2">&quot;parameters&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function_name</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function_name</span><span class="p">)):</span>
+                <span class="n">func_to_call</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function_name</span><span class="p">)</span>
+                <span class="n">func_to_call</span><span class="p">(</span><span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
+                        
+        <span class="k">def</span><span class="w"> </span><span class="nf">extract_parameters_from_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Extracts the parameters from the _history attribute of the class up to the given step.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            step : int</span>
+<span class="sd">                The number of the function up to which the algorithm has to be run.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="c1"># Goes through the steps of the _history attribute up to the given step (excluded) and updates the attributes of the class</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+                <span class="n">hist_step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">if</span> <span class="s2">&quot;x&quot;</span> <span class="ow">in</span> <span class="n">hist_step</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">hist_step</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
+                <span class="k">if</span> <span class="s2">&quot;y&quot;</span> <span class="ow">in</span> <span class="n">hist_step</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">hist_step</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">])</span>
+                <span class="k">if</span> <span class="s2">&quot;points&quot;</span> <span class="ow">in</span> <span class="n">hist_step</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">hist_step</span><span class="p">[</span><span class="s2">&quot;points&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="k">if</span> <span class="s2">&quot;windows&quot;</span> <span class="ow">in</span> <span class="n">hist_step</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">windows</span> <span class="o">=</span> <span class="n">hist_step</span><span class="p">[</span><span class="s2">&quot;windows&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="c1"># If the step is None, set the step to the length of the functions list</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="s2">&quot;functions&quot;</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span>
+
+        <span class="c1"># Ensures that the step is within the range of the functions list</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">step</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="s2">&quot;functions&quot;</span><span class="p">]):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The step parameter has to be a positive integersmaller than the number of functions (here </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="s1">&#39;functions&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">). The step value given was </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Sets the _record_algorithm attribute to False to avoid recording the steps in the _algorithm attributes when running the __getattribute__ function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_record_algorithm</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># In the particular case where the first step is to be run, we start by retrieving the parameters of the first step from the _history_base attribute, then we remove the first element of the _history attribute and run the functions sequentially from there, up to the given step</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Reinitialize the points and windows attributes</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">windows</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="c1"># Reinitialize the _history attribute</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="c1"># Reinitialize the x and y attributes</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history_base</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history_base</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span>
+            
+            <span class="c1"># Run the first step</span>
+            <span class="n">run_step_save_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+            <span class="c1"># Makes sure that the x and y attributes are stored in the history</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;x&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span> 
+                <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;y&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span> 
+                <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+        <span class="c1"># If now we want to run another step, look at the _history attribute to extract the parameters that have been stored up to the current step (or the last step stored in the _history attribute), limit the _history attribute to the current step and run the functions sequentially from there, up to the given step</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If we want to execute a step that was previously executed and whose results were stored in the _history attribute:</span>
+            <span class="k">if</span> <span class="n">step</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">):</span>
+                <span class="c1"># Reduce the _history attribute to the given step (excluded)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[:</span><span class="n">step</span><span class="p">]</span>
+
+                <span class="c1"># Extract the parameters from the _history attribute up to the given step (exlucded)</span>
+                <span class="n">extract_parameters_from_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+
+            <span class="c1"># If now we want to execute a step that is beyond what was previously executed, we need to run all the steps from the last stored step to the given step</span>
+            <span class="k">elif</span> <span class="n">step</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">):</span>
+                <span class="c1"># In the particular case where no steps are stored, we run the first step of the algorithm recursively. This reinitializes the points and windows attributes, the _history attribute, and the x and y attributes</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">silent_run_algorithm</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">first_step</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_record_algorithm</span> <span class="o">=</span> <span class="kc">False</span>
+
+                <span class="c1"># If some steps are stored, we update the attributes using the parameters stored in the _history attribute and run from there</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">extract_parameters_from_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">))</span>
+                    <span class="n">first_step</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">)</span>
+
+                <span class="c1"># Run the steps from the last stored step to the given step (excluded)</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">first_step</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+                    <span class="n">run_step_save_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+            <span class="c1"># Run the selected step</span>
+            <span class="n">run_step_save_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_record_algorithm</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="Analyse_backend.silent_save_algorithm">
+<a class="viewcode-back" href="../../source/_autosummary/HDF5_BLS_analyse.Analyse_backend.html#HDF5_BLS_analyse.Analyse_backend.silent_save_algorithm">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">silent_save_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;algorithm.json&quot;</span><span class="p">,</span> <span class="n">save_parameters</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Saves the algorithm to a JSON file with or without the parameters used. If the parameters are not saved, their value is set to a default value proper to their type.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filepath : str, optional</span>
+<span class="sd">            The filepath to save the algorithm to. Default is &quot;algorithm.json&quot;.</span>
+<span class="sd">        save_parameters : bool, optional</span>
+<span class="sd">            Whether to save the parameters of the functions. Default is False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    
+
+
+
+        <span class="c1"># Creates a local dictionary to store the algorithm to save. This allows to reinitiate the parameters if needed.</span>
+        <span class="n">algorithm_loc</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Then go through the keys of the algorithm</span>
+        <span class="c1"># for k in self._algorithm.keys():</span>
+        <span class="c1">#     # In particular for functions, if we don&#39;t want to save the parameters, we reinitiate them to empty lists or dictionaries</span>
+        <span class="c1">#     if k == &quot;functions&quot;:</span>
+        <span class="c1">#         algorithm_loc[k] = []</span>
+        <span class="c1">#         for f in self._algorithm[k]:</span>
+        <span class="c1">#             algorithm_loc[k].append({})</span>
+        <span class="c1">#             algorithm_loc[k][-1][&quot;function&quot;] = f[&quot;function&quot;]</span>
+        <span class="c1">#             if not save_parameters:</span>
+        <span class="c1">#                 for k_param in f[&quot;parameters&quot;].keys():</span>
+        <span class="c1">#                     if type(f[&quot;parameters&quot;][k_param]) == list:</span>
+        <span class="c1">#                         f[&quot;parameters&quot;][k_param] = []</span>
+        <span class="c1">#                     elif type(f[&quot;parameters&quot;][k_param]) == dict:</span>
+        <span class="c1">#                         f[&quot;parameters&quot;][k_param] = {}</span>
+        <span class="c1">#                     else:</span>
+        <span class="c1">#                         f[&quot;parameters&quot;][k_param] = None</span>
+        <span class="c1">#             algorithm_loc[k][-1][&quot;parameters&quot;] = f[&quot;parameters&quot;]</span>
+        <span class="c1">#             algorithm_loc[k][-1][&quot;description&quot;] = f[&quot;description&quot;]</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="c1"># In particular for functions, if we don&#39;t want to save the parameters, we reinitiate them to empty lists or dictionaries</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s2">&quot;functions&quot;</span><span class="p">:</span>
+                <span class="n">algorithm_loc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
+                    <span class="n">algorithm_loc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({})</span>
+                    <span class="n">algorithm_loc</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;function&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">save_parameters</span><span class="p">:</span>
+                        <span class="n">sgn</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">])</span>
+                        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sgn</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                            <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;self&quot;</span><span class="p">:</span>
+                                <span class="n">f</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">default</span>
+                    <span class="n">algorithm_loc</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;parameters&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="n">algorithm_loc</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;description&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">]</span>
+            <span class="c1"># Otherwise we just copy the value of the key</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">algorithm_loc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+
+        <span class="c1"># We save the algorithm to the given filepath</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">algorithm_loc</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Analyse_backend.set_x_y">
+<a class="viewcode-back" href="../../source/_autosummary/HDF5_BLS_analyse.Analyse_backend.html#HDF5_BLS_analyse.Analyse_backend.set_x_y">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_x_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the x and y values of the data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x : array-like</span>
+<span class="sd">            The x values of the data</span>
+<span class="sd">        y : array-like</span>
+<span class="sd">            The y values of the data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pierre Bouvet.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

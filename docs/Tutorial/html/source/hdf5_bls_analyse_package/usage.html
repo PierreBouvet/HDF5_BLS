@@ -1,0 +1,176 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example with a VIPA spectrometer &mdash; HDF5_BLS v1.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=f8b40d97" />
+
+  
+    <link rel="shortcut icon" href="../../_static/myicon.png"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e562d664"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HDF5_BLS
+              <img src="../../_static/myicon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The HDF5\_BLS project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_nutshell.html">The project in a nutshell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project.html">Project development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_format.html">The file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../normalization.html">Normalization rules for the BioBrillouin community</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_package.html">The HDF5_BLS package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_processing.html">Data Processing with HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_analyse_package.html">The HDF5_BLS_analyse package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_treat_package.html">The HDF5_BLS_treat package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer/presentation.html">Presentation of the project for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/setup.html">Setting up the development environment on Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/add_file_format.html">Adding a new file format to the HDF5_BLS library</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../summary_HDF5_BLS.html">HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../summary_HDF5_BLS_analyse.html">HDF5_BLS_analyse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../summary_HDF5_BLS_treat.html">HDF5_BLS_treat</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HDF5_BLS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Example with a VIPA spectrometer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/hdf5_bls_analyse_package/usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>Using the <em>HDF5_BLS_analyse</em> module is done following these steps:</p>
+<ol class="arabic simple">
+<li><p>Create an object corresponding to the type of spectrometer</p></li>
+<li><p>Define the algorithm to use to perform the analysis (either by creating it or by opening an existing one)</p></li>
+<li><p>Perform the analysis</p></li>
+<li><p>(optional) Save the algorithm to a JSON file</p></li>
+</ol>
+<section id="example-with-a-vipa-spectrometer">
+<h1>Example with a VIPA spectrometer<a class="headerlink" href="#example-with-a-vipa-spectrometer" title="Link to this heading"></a></h1>
+<p>The following example shows how to perform the analysis of a VIPA spectrometer. The code is written in Python and assumes that the <em>HDF5_BLS_analyse</em> module is installed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">HDF5_BLS_analyse</span><span class="w"> </span><span class="kn">import</span> <span class="n">Analyse_VIPA</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Initialising the Analyse_VIPA object on the mock spectrum</span>
+<span class="n">analyser</span> <span class="o">=</span> <span class="n">Analyse_VIPA</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mock_spectrum</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">mock_spectrum</span><span class="p">)</span>
+
+<span class="c1"># Creating a blank algorithm to perform the analysis</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">silent_create_algorithm</span><span class="p">(</span><span class="n">algorithm_name</span><span class="o">=</span><span class="s2">&quot;VIPA spectrum analyser&quot;</span><span class="p">,</span>
+                            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;v0&quot;</span><span class="p">,</span>
+                            <span class="n">author</span><span class="o">=</span><span class="s2">&quot;Pierre Bouvet&quot;</span><span class="p">,</span>
+                            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;This algorithm allows the user to recover a frequency axis basing ourselves on a single Brillouin spectrum obtained with a VIPA spectrometer. Considering that only one Brillouin Stokes and anti-Stokes doublet is visible on the spectrum, the user can select the peaks he sees, and then perform a quadratic interpolation to obtain the frequency axis. This interpolation is obtained either by entering a value for the Brillouin shift of the material or by entering the value of the Free Spectral Range (FSR) of the spectrometer. The user can finally recenter the spectrum either using the average between a Stokes and an anti-Stokes peak or by choosing an elastic peak as zero frequency.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Adding points corresponding to peaks to the algorithm</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="n">position_center_window</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">type_pnt</span><span class="o">=</span><span class="s2">&quot;Elastic&quot;</span><span class="p">,</span> <span class="n">window_width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="n">position_center_window</span><span class="o">=</span><span class="mi">37</span><span class="p">,</span> <span class="n">type_pnt</span><span class="o">=</span><span class="s2">&quot;Anti-Stokes&quot;</span><span class="p">,</span> <span class="n">window_width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="n">position_center_window</span><span class="o">=</span><span class="mi">236</span><span class="p">,</span> <span class="n">type_pnt</span><span class="o">=</span><span class="s2">&quot;Stokes&quot;</span><span class="p">,</span> <span class="n">window_width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="n">position_center_window</span><span class="o">=</span><span class="mi">259</span><span class="p">,</span> <span class="n">type_pnt</span><span class="o">=</span><span class="s2">&quot;Elastic&quot;</span><span class="p">,</span> <span class="n">window_width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="n">position_center_window</span><span class="o">=</span><span class="mi">282</span><span class="p">,</span> <span class="n">type_pnt</span><span class="o">=</span><span class="s2">&quot;Anti-Stokes&quot;</span><span class="p">,</span> <span class="n">window_width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="n">position_center_window</span><span class="o">=</span><span class="mi">466</span><span class="p">,</span> <span class="n">type_pnt</span><span class="o">=</span><span class="s2">&quot;Stokes&quot;</span><span class="p">,</span> <span class="n">window_width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="n">position_center_window</span><span class="o">=</span><span class="mi">488</span><span class="p">,</span> <span class="n">type_pnt</span><span class="o">=</span><span class="s2">&quot;Elastic&quot;</span><span class="p">,</span> <span class="n">window_width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="n">position_center_window</span><span class="o">=</span><span class="mi">509</span><span class="p">,</span> <span class="n">type_pnt</span><span class="o">=</span><span class="s2">&quot;Anti-Stokes&quot;</span><span class="p">,</span> <span class="n">window_width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Defining the FSR of the VIPA used</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">interpolate_elastic_inelastic</span><span class="p">(</span><span class="n">FSR</span> <span class="o">=</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="c1"># Identifying the central peaks and recentering the spectrum to have them be symetric</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="n">position_center_window</span><span class="o">=</span><span class="mi">57</span><span class="p">,</span> <span class="n">type_pnt</span><span class="o">=</span><span class="s2">&quot;Stokes&quot;</span><span class="p">,</span> <span class="n">window_width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="n">position_center_window</span><span class="o">=</span><span class="mf">68.5</span><span class="p">,</span> <span class="n">type_pnt</span><span class="o">=</span><span class="s2">&quot;Anti-Stokes&quot;</span><span class="p">,</span> <span class="n">window_width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">center_x_axis</span><span class="p">(</span><span class="n">center_type</span> <span class="o">=</span> <span class="s2">&quot;Inelastic&quot;</span><span class="p">)</span>
+
+<span class="c1"># Saving the algorithm to a standalone JSON file</span>
+<span class="n">analyser</span><span class="o">.</span><span class="n">silent_save_algorithm</span><span class="p">(</span><span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;algorithms/Analysis/VIPA spectrometer/Test.json&quot;</span><span class="p">,</span> <span class="n">save_parameters</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Extracting the PSD and frequency axis from the analyser object</span>
+<span class="n">frequency</span> <span class="o">=</span> <span class="n">analyser</span><span class="o">.</span><span class="n">x</span>
+<span class="n">PSD</span> <span class="o">=</span> <span class="n">analyser</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pierre Bouvet.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

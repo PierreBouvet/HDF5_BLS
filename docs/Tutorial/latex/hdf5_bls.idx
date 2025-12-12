@@ -1,0 +1,125 @@
+\indexentry{Wrapper (class in HDF5\_BLS)@\spxentry{Wrapper}\spxextra{class in HDF5\_BLS}|hyperpage}{65}
+\indexentry{filepath (HDF5\_BLS.Wrapper attribute)@\spxentry{filepath}\spxextra{HDF5\_BLS.Wrapper attribute}|hyperpage}{65}
+\indexentry{need\_for\_repack (HDF5\_BLS.Wrapper attribute)@\spxentry{need\_for\_repack}\spxextra{HDF5\_BLS.Wrapper attribute}|hyperpage}{65}
+\indexentry{save (HDF5\_BLS.Wrapper attribute)@\spxentry{save}\spxextra{HDF5\_BLS.Wrapper attribute}|hyperpage}{65}
+\indexentry{\_\_init\_\_() (HDF5\_BLS.Wrapper method)@\spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{65}
+\indexentry{BRILLOUIN\_TYPES\_DATASETS (HDF5\_BLS.Wrapper attribute)@\spxentry{BRILLOUIN\_TYPES\_DATASETS}\spxextra{HDF5\_BLS.Wrapper attribute}|hyperpage}{67}
+\indexentry{BRILLOUIN\_TYPES\_GROUPS (HDF5\_BLS.Wrapper attribute)@\spxentry{BRILLOUIN\_TYPES\_GROUPS}\spxextra{HDF5\_BLS.Wrapper attribute}|hyperpage}{67}
+\indexentry{add\_PSD() (HDF5\_BLS.Wrapper method)@\spxentry{add\_PSD()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{67}
+\indexentry{add\_abscissa() (HDF5\_BLS.Wrapper method)@\spxentry{add\_abscissa()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{68}
+\indexentry{add\_attributes() (HDF5\_BLS.Wrapper method)@\spxentry{add\_attributes()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{68}
+\indexentry{add\_dictionary() (HDF5\_BLS.Wrapper method)@\spxentry{add\_dictionary()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{68}
+\indexentry{add\_dictionnary() (HDF5\_BLS.Wrapper method)@\spxentry{add\_dictionnary()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{69}
+\indexentry{add\_frequency() (HDF5\_BLS.Wrapper method)@\spxentry{add\_frequency()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{70}
+\indexentry{add\_hdf5() (HDF5\_BLS.Wrapper method)@\spxentry{add\_hdf5()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{70}
+\indexentry{add\_other() (HDF5\_BLS.Wrapper method)@\spxentry{add\_other()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{71}
+\indexentry{add\_raw\_data() (HDF5\_BLS.Wrapper method)@\spxentry{add\_raw\_data()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{71}
+\indexentry{add\_treated\_data() (HDF5\_BLS.Wrapper method)@\spxentry{add\_treated\_data()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{72}
+\indexentry{change\_brillouin\_type() (HDF5\_BLS.Wrapper method)@\spxentry{change\_brillouin\_type()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{72}
+\indexentry{change\_name() (HDF5\_BLS.Wrapper method)@\spxentry{change\_name()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{72}
+\indexentry{clear\_empty\_attributes() (HDF5\_BLS.Wrapper method)@\spxentry{clear\_empty\_attributes()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{73}
+\indexentry{close() (HDF5\_BLS.Wrapper method)@\spxentry{close()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{73}
+\indexentry{combine\_datasets() (HDF5\_BLS.Wrapper method)@\spxentry{combine\_datasets()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{73}
+\indexentry{compatibility\_changes() (HDF5\_BLS.Wrapper method)@\spxentry{compatibility\_changes()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{73}
+\indexentry{copy\_dataset() (HDF5\_BLS.Wrapper method)@\spxentry{copy\_dataset()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{73}
+\indexentry{create\_group() (HDF5\_BLS.Wrapper method)@\spxentry{create\_group()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{73}
+\indexentry{delete\_element() (HDF5\_BLS.Wrapper method)@\spxentry{delete\_element()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{74}
+\indexentry{export\_brim() (HDF5\_BLS.Wrapper method)@\spxentry{export\_brim()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{74}
+\indexentry{export\_dataset() (HDF5\_BLS.Wrapper method)@\spxentry{export\_dataset()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{74}
+\indexentry{export\_group() (HDF5\_BLS.Wrapper method)@\spxentry{export\_group()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{74}
+\indexentry{export\_image() (HDF5\_BLS.Wrapper method)@\spxentry{export\_image()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{74}
+\indexentry{get\_attributes() (HDF5\_BLS.Wrapper method)@\spxentry{get\_attributes()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{75}
+\indexentry{get\_children\_elements() (HDF5\_BLS.Wrapper method)@\spxentry{get\_children\_elements()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{75}
+\indexentry{get\_special\_groups\_hierarchy() (HDF5\_BLS.Wrapper method)@\spxentry{get\_special\_groups\_hierarchy()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{75}
+\indexentry{get\_structure() (HDF5\_BLS.Wrapper method)@\spxentry{get\_structure()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{76}
+\indexentry{get\_type() (HDF5\_BLS.Wrapper method)@\spxentry{get\_type()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{76}
+\indexentry{import\_PSD() (HDF5\_BLS.Wrapper method)@\spxentry{import\_PSD()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{76}
+\indexentry{import\_other() (HDF5\_BLS.Wrapper method)@\spxentry{import\_other()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{76}
+\indexentry{import\_properties\_data() (HDF5\_BLS.Wrapper method)@\spxentry{import\_properties\_data()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{77}
+\indexentry{import\_raw\_data() (HDF5\_BLS.Wrapper method)@\spxentry{import\_raw\_data()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{77}
+\indexentry{move() (HDF5\_BLS.Wrapper method)@\spxentry{move()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{78}
+\indexentry{move\_channel\_dimension\_to\_last() (HDF5\_BLS.Wrapper method)@\spxentry{move\_channel\_dimension\_to\_last()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{78}
+\indexentry{print\_metadata() (HDF5\_BLS.Wrapper method)@\spxentry{print\_metadata()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{78}
+\indexentry{print\_structure() (HDF5\_BLS.Wrapper method)@\spxentry{print\_structure()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{78}
+\indexentry{repack() (HDF5\_BLS.Wrapper method)@\spxentry{repack()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{78}
+\indexentry{save\_as\_hdf5() (HDF5\_BLS.Wrapper method)@\spxentry{save\_as\_hdf5()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{78}
+\indexentry{save\_properties\_csv() (HDF5\_BLS.Wrapper method)@\spxentry{save\_properties\_csv()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{78}
+\indexentry{save\_stored\_script() (HDF5\_BLS.Wrapper method)@\spxentry{save\_stored\_script()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{79}
+\indexentry{store\_script() (HDF5\_BLS.Wrapper method)@\spxentry{store\_script()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{79}
+\indexentry{update\_property() (HDF5\_BLS.Wrapper method)@\spxentry{update\_property()}\spxextra{HDF5\_BLS.Wrapper method}|hyperpage}{79}
+\indexentry{module@\spxentry{module}!HDF5\_BLS.load\_data@\spxentry{HDF5\_BLS.load\_data}|hyperpage}{79}
+\indexentry{HDF5\_BLS.load\_data@\spxentry{HDF5\_BLS.load\_data}!module@\spxentry{module}|hyperpage}{79}
+\indexentry{load\_dat\_file() (in module HDF5\_BLS.load\_data)@\spxentry{load\_dat\_file()}\spxextra{in module HDF5\_BLS.load\_data}|hyperpage}{80}
+\indexentry{load\_general() (in module HDF5\_BLS.load\_data)@\spxentry{load\_general()}\spxextra{in module HDF5\_BLS.load\_data}|hyperpage}{80}
+\indexentry{load\_image\_file() (in module HDF5\_BLS.load\_data)@\spxentry{load\_image\_file()}\spxextra{in module HDF5\_BLS.load\_data}|hyperpage}{80}
+\indexentry{load\_npy\_file() (in module HDF5\_BLS.load\_data)@\spxentry{load\_npy\_file()}\spxextra{in module HDF5\_BLS.load\_data}|hyperpage}{81}
+\indexentry{load\_sif\_file() (in module HDF5\_BLS.load\_data)@\spxentry{load\_sif\_file()}\spxextra{in module HDF5\_BLS.load\_data}|hyperpage}{81}
+\indexentry{module@\spxentry{module}!HDF5\_BLS.errors@\spxentry{HDF5\_BLS.errors}|hyperpage}{81}
+\indexentry{HDF5\_BLS.errors@\spxentry{HDF5\_BLS.errors}!module@\spxentry{module}|hyperpage}{81}
+\indexentry{WrapperError@\spxentry{WrapperError}|hyperpage}{82}
+\indexentry{WrapperError\_ArgumentType@\spxentry{WrapperError\_ArgumentType}|hyperpage}{82}
+\indexentry{WrapperError\_FileNotFound@\spxentry{WrapperError\_FileNotFound}|hyperpage}{82}
+\indexentry{WrapperError\_Overwrite@\spxentry{WrapperError\_Overwrite}|hyperpage}{82}
+\indexentry{WrapperError\_Save@\spxentry{WrapperError\_Save}|hyperpage}{82}
+\indexentry{WrapperError\_StructureError@\spxentry{WrapperError\_StructureError}|hyperpage}{82}
+\indexentry{Analyse\_backend (class in HDF5\_BLS\_analyse)@\spxentry{Analyse\_backend}\spxextra{class in HDF5\_BLS\_analyse}|hyperpage}{83}
+\indexentry{\_\_init\_\_() (HDF5\_BLS\_analyse.Analyse\_backend method)@\spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}|hyperpage}{84}
+\indexentry{set\_x\_y() (HDF5\_BLS\_analyse.Analyse\_backend method)@\spxentry{set\_x\_y()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}|hyperpage}{84}
+\indexentry{silent\_create\_algorithm() (HDF5\_BLS\_analyse.Analyse\_backend method)@\spxentry{silent\_create\_algorithm()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}|hyperpage}{84}
+\indexentry{silent\_move\_step() (HDF5\_BLS\_analyse.Analyse\_backend method)@\spxentry{silent\_move\_step()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}|hyperpage}{85}
+\indexentry{silent\_open\_algorithm() (HDF5\_BLS\_analyse.Analyse\_backend method)@\spxentry{silent\_open\_algorithm()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}|hyperpage}{85}
+\indexentry{silent\_remove\_step() (HDF5\_BLS\_analyse.Analyse\_backend method)@\spxentry{silent\_remove\_step()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}|hyperpage}{85}
+\indexentry{silent\_run\_algorithm() (HDF5\_BLS\_analyse.Analyse\_backend method)@\spxentry{silent\_run\_algorithm()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}|hyperpage}{85}
+\indexentry{silent\_save\_algorithm() (HDF5\_BLS\_analyse.Analyse\_backend method)@\spxentry{silent\_save\_algorithm()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}|hyperpage}{85}
+\indexentry{Analyse\_general (class in HDF5\_BLS\_analyse)@\spxentry{Analyse\_general}\spxextra{class in HDF5\_BLS\_analyse}|hyperpage}{85}
+\indexentry{\_\_init\_\_() (HDF5\_BLS\_analyse.Analyse\_general method)@\spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS\_analyse.Analyse\_general method}|hyperpage}{85}
+\indexentry{silent\_clear\_points() (HDF5\_BLS\_analyse.Analyse\_general method)@\spxentry{silent\_clear\_points()}\spxextra{HDF5\_BLS\_analyse.Analyse\_general method}|hyperpage}{86}
+\indexentry{silent\_return\_string\_algorithm() (HDF5\_BLS\_analyse.Analyse\_general method)@\spxentry{silent\_return\_string\_algorithm()}\spxextra{HDF5\_BLS\_analyse.Analyse\_general method}|hyperpage}{86}
+\indexentry{Analyse\_VIPA (class in HDF5\_BLS\_analyse)@\spxentry{Analyse\_VIPA}\spxextra{class in HDF5\_BLS\_analyse}|hyperpage}{86}
+\indexentry{\_\_init\_\_() (HDF5\_BLS\_analyse.Analyse\_VIPA method)@\spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}|hyperpage}{86}
+\indexentry{add\_point() (HDF5\_BLS\_analyse.Analyse\_VIPA method)@\spxentry{add\_point()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}|hyperpage}{87}
+\indexentry{center\_x\_axis() (HDF5\_BLS\_analyse.Analyse\_VIPA method)@\spxentry{center\_x\_axis()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}|hyperpage}{88}
+\indexentry{interpolate\_between\_one\_order() (HDF5\_BLS\_analyse.Analyse\_VIPA method)@\spxentry{interpolate\_between\_one\_order()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}|hyperpage}{88}
+\indexentry{interpolate\_elastic() (HDF5\_BLS\_analyse.Analyse\_VIPA method)@\spxentry{interpolate\_elastic()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}|hyperpage}{88}
+\indexentry{interpolate\_elastic\_inelastic() (HDF5\_BLS\_analyse.Analyse\_VIPA method)@\spxentry{interpolate\_elastic\_inelastic()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}|hyperpage}{88}
+\indexentry{interpolate\_on\_one\_order() (HDF5\_BLS\_analyse.Analyse\_VIPA method)@\spxentry{interpolate\_on\_one\_order()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}|hyperpage}{88}
+\indexentry{Treat\_backend (class in HDF5\_BLS\_treat)@\spxentry{Treat\_backend}\spxextra{class in HDF5\_BLS\_treat}|hyperpage}{89}
+\indexentry{\_\_init\_\_() (HDF5\_BLS\_treat.Treat\_backend method)@\spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}|hyperpage}{90}
+\indexentry{silent\_clear\_points() (HDF5\_BLS\_treat.Treat\_backend method)@\spxentry{silent\_clear\_points()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}|hyperpage}{91}
+\indexentry{silent\_create\_algorithm() (HDF5\_BLS\_treat.Treat\_backend method)@\spxentry{silent\_create\_algorithm()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}|hyperpage}{91}
+\indexentry{silent\_move\_step() (HDF5\_BLS\_treat.Treat\_backend method)@\spxentry{silent\_move\_step()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}|hyperpage}{91}
+\indexentry{silent\_open\_algorithm() (HDF5\_BLS\_treat.Treat\_backend method)@\spxentry{silent\_open\_algorithm()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}|hyperpage}{91}
+\indexentry{silent\_remove\_step() (HDF5\_BLS\_treat.Treat\_backend method)@\spxentry{silent\_remove\_step()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}|hyperpage}{91}
+\indexentry{silent\_return\_string\_algorithm() (HDF5\_BLS\_treat.Treat\_backend method)@\spxentry{silent\_return\_string\_algorithm()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}|hyperpage}{91}
+\indexentry{silent\_run\_algorithm() (HDF5\_BLS\_treat.Treat\_backend method)@\spxentry{silent\_run\_algorithm()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}|hyperpage}{92}
+\indexentry{silent\_save\_algorithm() (HDF5\_BLS\_treat.Treat\_backend method)@\spxentry{silent\_save\_algorithm()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}|hyperpage}{92}
+\indexentry{Models (class in HDF5\_BLS\_treat)@\spxentry{Models}\spxextra{class in HDF5\_BLS\_treat}|hyperpage}{92}
+\indexentry{\_\_init\_\_() (HDF5\_BLS\_treat.Models method)@\spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS\_treat.Models method}|hyperpage}{92}
+\indexentry{DHO() (HDF5\_BLS\_treat.Models method)@\spxentry{DHO()}\spxextra{HDF5\_BLS\_treat.Models method}|hyperpage}{93}
+\indexentry{DHO\_elastic() (HDF5\_BLS\_treat.Models method)@\spxentry{DHO\_elastic()}\spxextra{HDF5\_BLS\_treat.Models method}|hyperpage}{93}
+\indexentry{gaussian() (HDF5\_BLS\_treat.Models method)@\spxentry{gaussian()}\spxextra{HDF5\_BLS\_treat.Models method}|hyperpage}{94}
+\indexentry{lorentzian() (HDF5\_BLS\_treat.Models method)@\spxentry{lorentzian()}\spxextra{HDF5\_BLS\_treat.Models method}|hyperpage}{94}
+\indexentry{lorentzian\_elastic() (HDF5\_BLS\_treat.Models method)@\spxentry{lorentzian\_elastic()}\spxextra{HDF5\_BLS\_treat.Models method}|hyperpage}{94}
+\indexentry{models (HDF5\_BLS\_treat.Models attribute)@\spxentry{models}\spxextra{HDF5\_BLS\_treat.Models attribute}|hyperpage}{94}
+\indexentry{TreatmentError@\spxentry{TreatmentError}|hyperpage}{95}
+\indexentry{Treat (class in HDF5\_BLS\_treat)@\spxentry{Treat}\spxextra{class in HDF5\_BLS\_treat}|hyperpage}{95}
+\indexentry{\_\_init\_\_() (HDF5\_BLS\_treat.Treat method)@\spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{95}
+\indexentry{add\_point() (HDF5\_BLS\_treat.Treat method)@\spxentry{add\_point()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{96}
+\indexentry{add\_window() (HDF5\_BLS\_treat.Treat method)@\spxentry{add\_window()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{97}
+\indexentry{adjust\_treatment\_on\_errors() (HDF5\_BLS\_treat.Treat method)@\spxentry{adjust\_treatment\_on\_errors()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{97}
+\indexentry{apply\_algorithm\_on\_all() (HDF5\_BLS\_treat.Treat method)@\spxentry{apply\_algorithm\_on\_all()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{97}
+\indexentry{blind\_deconvolution() (HDF5\_BLS\_treat.Treat method)@\spxentry{blind\_deconvolution()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{97}
+\indexentry{combine\_results\_FSR() (HDF5\_BLS\_treat.Treat method)@\spxentry{combine\_results\_FSR()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{97}
+\indexentry{define\_model() (HDF5\_BLS\_treat.Treat method)@\spxentry{define\_model()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{98}
+\indexentry{estimate\_width\_inelastic\_peaks() (HDF5\_BLS\_treat.Treat method)@\spxentry{estimate\_width\_inelastic\_peaks()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{98}
+\indexentry{fit\_all\_inelastic\_of\_curve() (HDF5\_BLS\_treat.Treat method)@\spxentry{fit\_all\_inelastic\_of\_curve()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{98}
+\indexentry{mark\_errors\_BLT() (HDF5\_BLS\_treat.Treat method)@\spxentry{mark\_errors\_BLT()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{99}
+\indexentry{mark\_errors\_linewidth() (HDF5\_BLS\_treat.Treat method)@\spxentry{mark\_errors\_linewidth()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{99}
+\indexentry{mark\_errors\_shift() (HDF5\_BLS\_treat.Treat method)@\spxentry{mark\_errors\_shift()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{99}
+\indexentry{mark\_errors\_std\_BLT() (HDF5\_BLS\_treat.Treat method)@\spxentry{mark\_errors\_std\_BLT()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{99}
+\indexentry{mark\_errors\_std\_linewidth() (HDF5\_BLS\_treat.Treat method)@\spxentry{mark\_errors\_std\_linewidth()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{99}
+\indexentry{mark\_errors\_std\_shift() (HDF5\_BLS\_treat.Treat method)@\spxentry{mark\_errors\_std\_shift()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{99}
+\indexentry{mark\_point\_error() (HDF5\_BLS\_treat.Treat method)@\spxentry{mark\_point\_error()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{100}
+\indexentry{multi\_fit\_all\_inelastic() (HDF5\_BLS\_treat.Treat method)@\spxentry{multi\_fit\_all\_inelastic()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{100}
+\indexentry{normalize\_data() (HDF5\_BLS\_treat.Treat method)@\spxentry{normalize\_data()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{100}
+\indexentry{single\_fit\_all\_inelastic() (HDF5\_BLS\_treat.Treat method)@\spxentry{single\_fit\_all\_inelastic()}\spxextra{HDF5\_BLS\_treat.Treat method}|hyperpage}{100}

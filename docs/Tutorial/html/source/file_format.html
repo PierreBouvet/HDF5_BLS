@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The file format &mdash; HDF5_BLS v1.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f8b40d97" />
+
+  
+    <link rel="shortcut icon" href="../_static/myicon.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=e562d664"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Normalization rules for the BioBrillouin community" href="normalization.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            HDF5_BLS
+              <img src="../_static/myicon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The HDF5\_BLS project</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="project_nutshell.html">The project in a nutshell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project.html">Project development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The file format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#a-single-measure">A single measure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-single-measure-with-physical-meaning">A single measure with physical meaning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multiple-measures-stored-in-the-same-file">Multiple measures stored in the same file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multiple-measures-stored-with-their-results">Multiple measures stored with their results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multiple-measures-stored-with-their-results-and-algorithms">Multiple measures stored with their results and algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="normalization.html">Normalization rules for the BioBrillouin community</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hdf5_bls_package.html">The HDF5_BLS package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_processing.html">Data Processing with HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hdf5_bls_analyse_package.html">The HDF5_BLS_analyse package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hdf5_bls_treat_package.html">The HDF5_BLS_treat package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developer/presentation.html">Presentation of the project for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/setup.html">Setting up the development environment on Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/add_file_format.html">Adding a new file format to the HDF5_BLS library</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="summary_HDF5_BLS.html">HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary_HDF5_BLS_analyse.html">HDF5_BLS_analyse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary_HDF5_BLS_treat.html">HDF5_BLS_treat</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HDF5_BLS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">The file format</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/file_format.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-file-format">
+<h1>The file format<a class="headerlink" href="#the-file-format" title="Link to this heading"></a></h1>
+<section id="a-single-measure">
+<h2>A single measure<a class="headerlink" href="#a-single-measure" title="Link to this heading"></a></h2>
+<p>This project aims at defining a standard for storing Brillouin Light Scattering measures and associated treatment in a HDF5 file.</p>
+<p>HDF5 stands for “Hierarchical Data Format” and is a file format that allows the storage of data in a hierarchical structure. This structure allows to store data in a way that is both human and machine readable. The structure of the file is based on the following base structure, which corresponds to the structure of a file containing a single measure (<em>Measure</em>) where no parameters have been stored:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file.h5
+└──<span class="w"> </span>Brillouin<span class="w"> </span><span class="o">(</span>group<span class="o">)</span>
+<span class="w">    </span>└──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>group<span class="o">)</span>
+<span class="w">        </span>└──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>dataset<span class="o">)</span>
+</pre></div>
+</div>
+<p>The dimensionality of the dataset is free, there are therefore by design virtually no restrictions on the data that can be stored in this format.</p>
+<p>The organization of the file is based on the following principles:</p>
+<ul class="simple">
+<li><p>The file is organized in groups and datasets, which allows to store data in a hierarchical structure.</p></li>
+<li><p>Only one dataset corresponding to a measure can be stored per group.</p></li>
+<li><p>The groups are used to organize the file and store metadata and parameters related to the measure, and the datasets are used to store the actual data.</p></li>
+</ul>
+</section>
+<section id="a-single-measure-with-physical-meaning">
+<h2>A single measure with physical meaning<a class="headerlink" href="#a-single-measure-with-physical-meaning" title="Link to this heading"></a></h2>
+<p>From the single measure file, we need to move towards a structure where datasets have a meaning and are not just a collection of numbers. To do so, we propose to always refer to the Power Spectral Density (PSD) as the basis for a measure. In this spirit, we add to our measure group two datasets containing the PSD and the corresponding frequency axis:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file.h5
+└──<span class="w"> </span>Brillouin<span class="w"> </span><span class="o">(</span>group<span class="o">)</span>
+<span class="w">    </span>└──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>group<span class="o">)</span>
+<span class="w">        </span>├──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>dataset<span class="o">)</span>
+<span class="w">        </span>├──<span class="w"> </span>PSD<span class="w"> </span><span class="o">(</span>dataset<span class="o">)</span>
+<span class="w">        </span>└──<span class="w"> </span>Frequency<span class="w"> </span><span class="o">(</span>dataset<span class="o">)</span>
+</pre></div>
+</div>
+<p>To not constrain the names of the datasets, we assign to each of these datasets, a “Brillouin_type” attribute. This attribute is a string that allows to know the type of the element:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file.h5
+└──<span class="w"> </span>Brillouin<span class="w"> </span><span class="o">(</span>group<span class="o">)</span>
+<span class="w">    </span>└──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>group<span class="o">)</span>
+<span class="w">        </span>├──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Raw data&quot;</span><span class="o">)</span>
+<span class="w">        </span>├──<span class="w"> </span>PSD<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PSD&quot;</span><span class="o">)</span>
+<span class="w">        </span>└──<span class="w"> </span>Frequency<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Frequency&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<section id="multiple-measures-stored-in-the-same-file">
+<h2>Multiple measures stored in the same file<a class="headerlink" href="#multiple-measures-stored-in-the-same-file" title="Link to this heading"></a></h2>
+<p>In the case where we want to store multiple measures in the same file, we can multiply the number of groups stored under the “Brillouin” group.  For the same reason than before, to not constrain the names of the group, we’ll assign them “Brillouin_type” attributes to differentiate the groups that store groups (“Root”) from the groups that store measures (“Measure”):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file.h5
+└──<span class="w"> </span>Brillouin<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span><span class="o">)</span>
+<span class="w">    </span>├──<span class="w"> </span>RWPE1<span class="w"> </span>organoids<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>Morphogenesis<span class="w"> </span>day<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>Sample<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Measure&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Raw data&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PSD<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PSD&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>Frequency<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Frequency&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>Sample<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Measure&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Raw data&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>PSD<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PSD&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>Frequency<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Frequency&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>...
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>Morphogenesis<span class="w"> </span>day<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>...
+<span class="w">    </span>├──<span class="w"> </span>H6C7<span class="w"> </span>organoids<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span><span class="o">)</span>
+<span class="w">    </span>├──<span class="w"> </span>...
+</pre></div>
+</div>
+</section>
+<section id="multiple-measures-stored-with-their-results">
+<h2>Multiple measures stored with their results<a class="headerlink" href="#multiple-measures-stored-with-their-results" title="Link to this heading"></a></h2>
+<p>The next step is to store the results of the treatment of the measure. The difficulty lies in the fact that multiple treatments can be applied to the same measure. To solve this problem, we propose to store all the results of a treatment in a dedicated “Treatment” group. This group will be named after the treatment and will contain for example the shift, the linewidth, the amplitude, the BLT, the error on the shift, etc.</p>
+<p>Following the same logic, each of these datasets will be associated to a “Brillouin_type” attribute to recognize the nature of the dataset:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file.h5
+└──<span class="w"> </span>Brillouin<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span><span class="o">)</span>
+<span class="w">    </span>└──<span class="w"> </span>RWPE1<span class="w"> </span>organoids<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span><span class="o">)</span>
+<span class="w">        </span>└──<span class="w"> </span>Morphogenesis<span class="w"> </span>day<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span><span class="o">)</span>
+<span class="w">            </span>├──<span class="w"> </span>Sample<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Measure&quot;</span><span class="o">)</span>
+<span class="w">            </span>│<span class="w">   </span>├──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Raw data&quot;</span><span class="o">)</span>
+<span class="w">            </span>│<span class="w">   </span>├──<span class="w"> </span>PSD<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PSD&quot;</span><span class="o">)</span>
+<span class="w">            </span>│<span class="w">   </span>├──<span class="w"> </span>Frequency<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Frequency&quot;</span><span class="o">)</span>
+<span class="w">            </span>│<span class="w">   </span>└──<span class="w"> </span>Treatment<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Treatment&quot;</span><span class="o">)</span>
+<span class="w">            </span>│<span class="w">       </span>├──<span class="w"> </span>Shift<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Shift&quot;</span><span class="o">)</span>
+<span class="w">            </span>│<span class="w">       </span>├──<span class="w"> </span>Linewidth<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Linewidth&quot;</span><span class="o">)</span>
+<span class="w">            </span>└──<span class="w"> </span>Sample<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Measure&quot;</span><span class="o">)</span>
+<span class="w">                </span>├──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Raw data&quot;</span><span class="o">)</span>
+<span class="w">                </span>├──<span class="w"> </span>PSD<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PSD&quot;</span><span class="o">)</span>
+<span class="w">                </span>├──<span class="w"> </span>Frequency<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Frequency&quot;</span><span class="o">)</span>
+<span class="w">                </span>└──<span class="w"> </span>Treatment<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Treatment&quot;</span><span class="o">)</span>
+<span class="w">                    </span>├──<span class="w"> </span>Shift<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Shift&quot;</span><span class="o">)</span>
+<span class="w">                    </span>└──<span class="w"> </span>Linewidth<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Linewidth&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<section id="multiple-measures-stored-with-their-results-and-algorithms">
+<h2>Multiple measures stored with their results and algorithms<a class="headerlink" href="#multiple-measures-stored-with-their-results-and-algorithms" title="Link to this heading"></a></h2>
+<p>The file structure is capable of storing not only datasets, attributes related to how the data was collected, in a hierarchical way, but it also allows users to store their scripts. This is particularly useful when the user performs a new kind of data processing, or when he uses the data to generate figures. Any script can be stored in the file as text. Note that in order to differentiate between scripts and “normal” attributes, we recommend using the prefix “<a href="#id1"><span class="problematic" id="id2">script_</span></a>” for the attribute name, so as to clearly distinguish them from the other attributes.</p>
+<p>These scripts can be in any programming language, and will in the future be runnable from the library itself (particularly to re-generate the figures). Here is an example of how a file storing a script would look like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file.h5
+└──<span class="w"> </span>Brillouin<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span>,<span class="w"> </span><span class="nv">script_plot_distributions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;import numpy as np\nimport ...&quot;</span><span class="o">)</span>
+<span class="w">    </span>├──<span class="w"> </span>Concentration<span class="w"> </span>1mMol/mL<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Measure&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>PSD<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PSD&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>Frequency<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Frequency&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>Treatment<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Treatment&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">       </span>├──<span class="w"> </span>Shift<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Shift&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">       </span>└──<span class="w"> </span>Linewidth<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Linewidth&quot;</span><span class="o">)</span>
+<span class="w">    </span>├──<span class="w"> </span>Concentration<span class="w"> </span>2mMol/mL<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Measure&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>PSD<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PSD&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>Frequency<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Frequency&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>Treatment<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Treatment&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">       </span>├──<span class="w"> </span>Shift<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Shift&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">       </span>└──<span class="w"> </span>Linewidth<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Linewidth&quot;</span><span class="o">)</span>
+<span class="w">    </span>├──<span class="w"> </span>Concentration<span class="w"> </span>3mMol/mL<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Measure&quot;</span><span class="o">)</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>...
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="normalization.html" class="btn btn-neutral float-right" title="Normalization rules for the BioBrillouin community" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pierre Bouvet.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

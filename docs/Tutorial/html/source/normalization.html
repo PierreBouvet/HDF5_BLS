@@ -1,0 +1,542 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Normalization rules for the BioBrillouin community &mdash; HDF5_BLS v1.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f8b40d97" />
+
+  
+    <link rel="shortcut icon" href="../_static/myicon.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=e562d664"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The HDF5_BLS package" href="hdf5_bls_package.html" />
+    <link rel="prev" title="The file format" href="file_format.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            HDF5_BLS
+              <img src="../_static/myicon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The HDF5\_BLS project</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="project_nutshell.html">The project in a nutshell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project.html">Project development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_format.html">The file format</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Normalization rules for the BioBrillouin community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#normalization-rules-for-attributes">Normalization rules for attributes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-brillouin-type-attributes">The Brillouin_type Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hierarchical-strorage-of-attributes">Hierarchical strorage of attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attribute-type">Attribute type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#organization-of-the-attributes">Organization of the attributes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prefix">Prefix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#units">Units</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#storing-analysis-and-treatment-processes-performed-with-the-hdf5-bls-package">Storing analysis and treatment processes performed with the HDF5_BLS package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#storing-custom-data-processing-code-and-visualization-code">Storing custom data processing code and visualization code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#normalization-rules-for-datasets">Normalization rules for datasets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-guidelines">General guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hierarchical-storage-of-abscissa-datasets">Hierarchical storage of abscissa datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clarification-on-dataset-shapes">Clarification on dataset shapes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uniform-sampling-examples">Uniform sampling examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#series-of-measures-on-a-1d-array">Series of measures on a 1D array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#series-of-measures-on-a-2d-grid">Series of measures on a 2D grid</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#normalization-rules-for-organizing-hdf5-files">Normalization rules for organizing HDF5 files</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hdf5_bls_package.html">The HDF5_BLS package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_processing.html">Data Processing with HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hdf5_bls_analyse_package.html">The HDF5_BLS_analyse package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hdf5_bls_treat_package.html">The HDF5_BLS_treat package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developer/presentation.html">Presentation of the project for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/setup.html">Setting up the development environment on Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/add_file_format.html">Adding a new file format to the HDF5_BLS library</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="summary_HDF5_BLS.html">HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary_HDF5_BLS_analyse.html">HDF5_BLS_analyse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary_HDF5_BLS_treat.html">HDF5_BLS_treat</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HDF5_BLS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Normalization rules for the BioBrillouin community</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/normalization.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="normalization-rules-for-the-biobrillouin-community">
+<span id="normalization"></span><h1>Normalization rules for the BioBrillouin community<a class="headerlink" href="#normalization-rules-for-the-biobrillouin-community" title="Link to this heading"></a></h1>
+<p>In order to be able to share and compare data between members of the BioBrillouin community, we need to agree on a set of normalization rules. We here propose a basis, largely inspired by the OME community.</p>
+<p>This section is divided in three parts:</p>
+<ul class="simple">
+<li><p>Normalization rules for attributes</p></li>
+<li><p>Normalization rules for datasets</p></li>
+<li><p>Normalization rules for organizing HDF5 files</p></li>
+</ul>
+<section id="normalization-rules-for-attributes">
+<h2>Normalization rules for attributes<a class="headerlink" href="#normalization-rules-for-attributes" title="Link to this heading"></a></h2>
+<section id="the-brillouin-type-attributes">
+<h3>The Brillouin_type Attributes<a class="headerlink" href="#the-brillouin-type-attributes" title="Link to this heading"></a></h3>
+<p>The Brillouin_type attribute is used to recognize the type of the element. Note that this attribute is therefore the first step in normalizing the file format. It can be any one of the following values:</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/Groups_and_datasets_type.png"><img alt="../_images/Groups_and_datasets_type.png" src="../_images/Groups_and_datasets_type.png" style="width: 70%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">A visual representation of the Brillouin_type attribute for groups and datasets in the HDF5 file.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="hierarchical-strorage-of-attributes">
+<h3>Hierarchical strorage of attributes<a class="headerlink" href="#hierarchical-strorage-of-attributes" title="Link to this heading"></a></h3>
+<p>HDF5 file format allows the storage of attributes in the metadata of the groups and datasets. As all the attributes applying to a measure will apply to all the elements of the “measure” group, we propose to store all the attributes concerning an experiment in the attributes of the group:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file.h5
+└──<span class="w"> </span>Brillouin<span class="w"> </span><span class="o">(</span>group<span class="o">)</span>
+<span class="w">    </span>├──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>group<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>attributes<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>measure
+<span class="w">        </span>└──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>dataset<span class="o">)</span>
+</pre></div>
+</div>
+<p>Being a hierarchical format, we also propose to store attributes hierarchically: all attributes of parent group apply to childre groups (if not redefined in children groups). Storing attributes in large files can therefore be done the following way:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file.h5
+└──<span class="w"> </span>Brillouin<span class="w"> </span><span class="o">(</span>group<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>attributes<span class="w"> </span>shared<span class="w"> </span>by<span class="w"> </span>Measure<span class="w"> </span><span class="m">0</span><span class="w"> </span>and<span class="w"> </span>Measure<span class="w"> </span><span class="m">1</span>
+<span class="w">    </span>├──<span class="w"> </span>Measure<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>group<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>other<span class="w"> </span>attributes<span class="w"> </span>specific<span class="w"> </span>to<span class="w"> </span>Measure<span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>dataset<span class="o">)</span>
+<span class="w">    </span>└──<span class="w"> </span>Measure<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>group<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>other<span class="w"> </span>attributes<span class="w"> </span>specific<span class="w"> </span>to<span class="w"> </span>Measure<span class="w"> </span><span class="m">1</span>
+<span class="w">        </span>└──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>dataset<span class="o">)</span>
+</pre></div>
+</div>
+<p>This approach allows us to store for example the parameters of the spectrometer used in a series of measures in the topmost group of the file.</p>
+<p>Note that the same logic applies to the treatment of the data. The attributes of the treatment will be stored in the attributes of the “Treatment” group.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file.h5
+└──<span class="w"> </span>Brillouin<span class="w"> </span><span class="o">(</span>group<span class="o">)</span>
+<span class="w">    </span>└──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>group<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>attributes<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>measure
+<span class="w">        </span>├──<span class="w"> </span>Measure<span class="w"> </span><span class="o">(</span>dataset<span class="o">)</span>
+<span class="w">        </span>└──<span class="w"> </span>Treatment<span class="w"> </span><span class="o">(</span>group<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>attributes<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>treatment
+<span class="w">            </span>└──<span class="w"> </span>Shift<span class="w"> </span><span class="o">(</span>dataset<span class="o">)</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-type">
+<h3>Attribute type<a class="headerlink" href="#attribute-type" title="Link to this heading"></a></h3>
+<p>In an effort to avoid any incompatibility, we propose to store the values of the attributes as ascii-encoded text. The library will then convert the strings to the appropriate type (e.g. a float for a temperature value).</p>
+</section>
+<section id="organization-of-the-attributes">
+<h3>Organization of the attributes<a class="headerlink" href="#organization-of-the-attributes" title="Link to this heading"></a></h3>
+<section id="prefix">
+<h4>Prefix<a class="headerlink" href="#prefix" title="Link to this heading"></a></h4>
+<p>We differentiate 5 types of attributes, that we differentiate using the following prefixes:</p>
+<ul class="simple">
+<li><p>SPECTROMETER - Attributes that are specific to the spectrometer used, such as the wavelength of the laser, the type of laser, the type of detector, etc. These attributes are recognized by the capital letter word “SPECTROMETER” in the name of the attribute.</p></li>
+<li><p>MEASURE - Attributes that are specific to the sample, such as the date of the measure, the name of the sample, etc. These attributes are recognized by the capital letter word “MEASURE” in the name of the attribute.</p></li>
+<li><p>FILEPROP - Attributes that are specific to the original file format, such as the name of the file, the date of the file, the version of the file, the precision used on the storage of the data, etc. These attributes are recognized by the capital letter word “FILEPROP” in the name of the attribute.</p></li>
+<li><p>PROCESS - Attributes that are specific to the storage of algorithms. These attributes are recognized by the capital letter word “PROCESS” in the name of the attribute.</p></li>
+<li><p>Attributes that are used inside the HDF5 file, such as the “Brillouin_type” attribute. These attributes are the only ones without a prefix.</p></li>
+</ul>
+</section>
+<section id="units">
+<h4>Units<a class="headerlink" href="#units" title="Link to this heading"></a></h4>
+<p>The name of the attributes contains the unit of the attribute if it has units, in the shape of an underscore followed by the unit in parenthesis. Some parameters will also be given following a given norm, such as the ISO8601 for dates. These norms are not specified in the name of the attribute. Here are some examples of attributes:</p>
+<ul class="simple">
+<li><p>“SPECTROMETER.Detector_Type” is the type of the detector used.</p></li>
+<li><p>“MEASURE.Sample” is the name of the sample.</p></li>
+<li><p>“MEASURE.Exposure_(s)” is the exposure of the sample given in seconds</p></li>
+<li><p>“MEASURE.Date_of_measurement” is the date of the measurement, stored following the ISO8601 norm.</p></li>
+<li><p>“FILEPROP.Name” is the name of the file.</p></li>
+</ul>
+<p>To ease the unification of nomenclature and norms of attributes, we propose to use a spreadsheet that contains the list of attributes, their definition, their unit and an example of value. This spreadsheet is available on the project repository and is updated as new attributes are added to the project. Each attribute has a version number that is also stored in the attributes of each data attribute (under FILEPROP.version).</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/Excel_attributes.png"><img alt="../_images/Excel_attributes.png" src="../_images/Excel_attributes.png" style="width: 70%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">A visualization of the spreadsheet containing the list of attributes.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="storing-analysis-and-treatment-processes-performed-with-the-hdf5-bls-package">
+<h3>Storing analysis and treatment processes performed with the HDF5_BLS package<a class="headerlink" href="#storing-analysis-and-treatment-processes-performed-with-the-hdf5-bls-package" title="Link to this heading"></a></h3>
+<p>Analysis and treatment processes are stored in the “PROCESS” attribute of the treatment groups. This attribute is a JSON file converted to a string, which contains the list of treatment steps performed on the data. This JSON file has the following structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;The name of the algorithm&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;v 0.1&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;author&quot;</span>:<span class="w"> </span><span class="s2">&quot;Author name and affiliation&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;description&quot;</span>:<span class="w"> </span><span class="s2">&quot;The description of the algorithm&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;functions&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;function&quot;</span>:<span class="w"> </span><span class="s2">&quot;The 1st function name in the class&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;parameters&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="s2">&quot;parameter_1&quot;</span>:<span class="w"> </span>value,
+<span class="w">            </span><span class="s2">&quot;parameter_2&quot;</span>:<span class="w"> </span>value,
+<span class="w">            </span>...
+<span class="w">        </span><span class="o">}</span>,
+<span class="w">        </span><span class="s2">&quot;description&quot;</span>:<span class="w"> </span><span class="s2">&quot;The description of the function&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;function&quot;</span>:<span class="w"> </span><span class="s2">&quot;The 2nd function name in the class&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;parameters&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="s2">&quot;parameter_1&quot;</span>:<span class="w"> </span>value,
+<span class="w">            </span><span class="s2">&quot;parameter_2&quot;</span>:<span class="w"> </span>value,
+<span class="w">            </span>...
+<span class="w">        </span><span class="o">}</span>,
+<span class="w">        </span><span class="s2">&quot;description&quot;</span>:<span class="w"> </span><span class="s2">&quot;The description of the function&quot;</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span>...
+<span class="w">    </span><span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>When the treatment is performed using the modules of the HDF5_BLS package, this attribute is automatically updated. Note that custom treatments can also be stored in this attribute by the user.</p>
+<p>This attribute can be exported to a standalone JSON file using the library. This attribute also allows the library to re-apply the treatment to the data, and modify steps of the treatment if needed.</p>
+</section>
+<section id="storing-custom-data-processing-code-and-visualization-code">
+<h3>Storing custom data processing code and visualization code<a class="headerlink" href="#storing-custom-data-processing-code-and-visualization-code" title="Link to this heading"></a></h3>
+<p>To ease the use of the file format, we propose the user to store their own codes directly as attributes of the groups they apply to. For example, if a code performing a statistical analysis has been used on the data, the user can store this code as a text attribute to the topmost group of the file. This is an unconventional way to store the code, but is has the great advantage of allowing the user to recover the code easily and to re-run it or modify it if needed in the future.</p>
+<p>Note that a function of the HDF5_BLS.Wrapper class (Wrapper.store_script) is available to perform the saving of the script easily. When called in a script, this function retrieves the caller’s filename, converts the python script to a text string, and stores it in the HDF5 file (as is).</p>
+</section>
+</section>
+<section id="normalization-rules-for-datasets">
+<h2>Normalization rules for datasets<a class="headerlink" href="#normalization-rules-for-datasets" title="Link to this heading"></a></h2>
+<section id="general-guidelines">
+<h3>General guidelines<a class="headerlink" href="#general-guidelines" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Datasets should be presented as tensors where the dimensions are attribuated to the different hyperparameters of the experiment (see <a class="reference internal" href="#dataset-multidimensional"><span class="std std-numref">Fig. 6</span></a>).</p></li>
+</ol>
+<figure class="align-center" id="id3">
+<span id="dataset-multidimensional"></span><a class="reference internal image-reference" href="../_images/Dataset_dimensions.png"><img alt="../_images/Dataset_dimensions.png" src="../_images/Dataset_dimensions.png" style="width: 70%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">A visual representation of different multidimensional datasets storing BLS spectra</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic" start="2">
+<li><p>The dimensions of the tensor should be ordered following this general convention, from last to first dimension (see <a class="reference internal" href="#dataset-dimension-norm"><span class="std std-numref">Fig. 7</span></a>):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Channels (n)</p></li>
+<li><p>x-axis (n-1)</p></li>
+<li><p>y-axis (n-2)</p></li>
+<li><p>z-axis (n-3)</p></li>
+<li><p>Time (n-4)</p></li>
+<li><p>Temperature (n-5)</p></li>
+<li><p>Angle (n-6)</p></li>
+<li><p>Other (n-…)</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<figure class="align-center" id="id4">
+<span id="dataset-dimension-norm"></span><a class="reference internal image-reference" href="../_images/Dataset_dimensions_normalization.png"><img alt="../_images/Dataset_dimensions_normalization.png" src="../_images/Dataset_dimensions_normalization.png" style="width: 40%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">A visual representation of the normalization of the physical meaning of the dimensions of a dataset</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic" start="3">
+<li><p>In cases of non-uniform sampling of one or more of the hyperparameters used in the experiment, the associated dimensions are broadcasted on the highest dimension, and the non-uniform dimension is set to 1:</p>
+<ul>
+<li><p>Example 1: the temperature (kT values) is non-uniformly sampled on a 2D mapping (of shape (kx, ky)) obtain with a line-scan, there are c channels per PSD supposed uniformly distributed in frequency along the measures:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>PSD array shape: (1, 1, 1, ky * kT, kx, c).</p></li>
+<li><p>Temperature abscissa array shape: (1, 1, 1, ky * kT, 1, 1, 1).</p></li>
+<li><p>y array shape: (ky, 1, 1).</p></li>
+<li><p>x array shape: (kx, 1).</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Example 2: the temperature (kT values) is non-uniformly sampled on a 2D mapping (of shape (kx, ky)) obtain with a point-scan, there are c channels per PSD supposed uniformly distributed in frequency along the measures:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>PSD array shape: (1, 1, 1, 1, ky * kT * kx, c).</p></li>
+<li><p>Temperature abscissa array shape: (1, 1, 1, ky * kT * kx, 1, 1, 1).</p></li>
+<li><p>y array shape: (ky, 1, 1).</p></li>
+<li><p>x array shape: (kx, 1).</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The arrangement of the hyperparameters differs from the one proposed by the OME community as most spectrometers will return the variation of the data with the frequency axis as the last dimension. Note however that for images, a simple transposition of the axes is enough to get a dataset compliant with the OME community convention.</p>
+</div>
+</section>
+<section id="hierarchical-storage-of-abscissa-datasets">
+<h3>Hierarchical storage of abscissa datasets<a class="headerlink" href="#hierarchical-storage-of-abscissa-datasets" title="Link to this heading"></a></h3>
+<p>If a series of measures are performed using the same abscissa (e.g. a series of 2D mappings on a region of same size between different samples), we can store the abscissa array in the parent group of all the measures sharing this same abscissa. This is optional but allows to equivalent file organizations:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file.h5
+└──<span class="w"> </span>Brillouin<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span><span class="o">)</span>
+<span class="w">    </span>├──<span class="w"> </span>Mapping<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Measure&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="p">|</span><span class="w">   </span>├──<span class="w"> </span>x<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Abscissa_1&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="p">|</span><span class="w">   </span>├──<span class="w"> </span>y<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Abscissa_2&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="p">|</span><span class="w">   </span>├──<span class="w"> </span>PSD<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PSD&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="p">|</span><span class="w">   </span>└──<span class="w"> </span>Frequency<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Frequency&quot;</span><span class="o">)</span>
+<span class="w">    </span>└──<span class="w"> </span>Mapping<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Measure&quot;</span><span class="o">)</span>
+<span class="w">        </span>├──<span class="w"> </span>x<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Abscissa_1&quot;</span><span class="o">)</span>
+<span class="w">        </span>├──<span class="w"> </span>y<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Abscissa_2&quot;</span><span class="o">)</span>
+<span class="w">        </span>├──<span class="w"> </span>PSD<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PSD&quot;</span><span class="o">)</span>
+<span class="w">        </span>└──<span class="w"> </span>Frequency<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Frequency&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>and</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file.h5
+└──<span class="w"> </span>Brillouin<span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Root&quot;</span><span class="o">)</span>
+<span class="w">    </span>├──<span class="w"> </span>x<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Abscissa_1&quot;</span><span class="o">)</span>
+<span class="w">    </span>├──<span class="w"> </span>y<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Abscissa_2&quot;</span><span class="o">)</span>
+<span class="w">    </span>├──<span class="w"> </span>Mapping<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Measure&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="p">|</span><span class="w">   </span>├──<span class="w"> </span>PSD<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PSD&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="p">|</span><span class="w">   </span>└──<span class="w"> </span>Frequency<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Frequency&quot;</span><span class="o">)</span>
+<span class="w">    </span>└──<span class="w"> </span>Mapping<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span>group,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Measure&quot;</span><span class="o">)</span>
+<span class="w">        </span>├──<span class="w"> </span>PSD<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PSD&quot;</span><span class="o">)</span>
+<span class="w">        </span>└──<span class="w"> </span>Frequency<span class="w"> </span><span class="o">(</span>dataset,<span class="w"> </span><span class="nv">Brillouin_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Frequency&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>For now we do not encourage one solution over the other in the normalization rules.</p>
+</section>
+<section id="clarification-on-dataset-shapes">
+<h3>Clarification on dataset shapes<a class="headerlink" href="#clarification-on-dataset-shapes" title="Link to this heading"></a></h3>
+<p>A dataset containing <em>k</em> values varying for a single parameter, should have all their lower dimensions set to 1.</p>
+<p>For example:</p>
+<ul class="simple">
+<li><p>a list of values of x-axis coordinates for each step should be of shape (k, 1), where <em>k</em> is the number of x coordinates.</p></li>
+<li><p>a list of values of y-axis coordinates for each step should be of shape (k, 1, 1), where <em>k</em> is the number of y coordinates.</p></li>
+<li><p>a list of values of z-axis coordinates for each step should be of shape (k, 1, 1, 1), where <em>k</em> is the number of z coordinates.</p></li>
+<li><p>a list of values of time steps for each step should be of shape (k, 1, 1, 1, 1), where <em>k</em> is the number of time coordinates.</p></li>
+<li><p>etc.</p></li>
+</ul>
+</section>
+<section id="uniform-sampling-examples">
+<h3>Uniform sampling examples<a class="headerlink" href="#uniform-sampling-examples" title="Link to this heading"></a></h3>
+<section id="series-of-measures-on-a-1d-array">
+<h4>Series of measures on a 1D array<a class="headerlink" href="#series-of-measures-on-a-1d-array" title="Link to this heading"></a></h4>
+<p>In this scenario, we vary one hyper parameter and measure the Brillouin spectra for each value this parameter can take. The hyper parameter is a 1D array of length <em>k</em>, and eqch Brillouin spectrum is an array of shape <em>c</em>. We consider that all the measures use the same frequency array for their channels.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>In the case where the hyperparameter being varied is the <em>x-axis</em>:</dt><dd><ul>
+<li><p>the PSD array is of shape (k, c)</p></li>
+<li><p>the frequency array is of shape (c)</p></li>
+<li><p>the abscissa array is of shape (k, 1)</p></li>
+<li><p>all the result arrays are of shape (k, 1)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>In the case where the hyperparameter being varied is the <em>y-axis</em>:</dt><dd><ul>
+<li><p>the PSD array is of shape (k, 1, c)</p></li>
+<li><p>the frequency array is of shape (c)</p></li>
+<li><p>the abscissa array is of shape (k, 1, 1)</p></li>
+<li><p>all the result arrays are of shape (k, 1, 1)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>In the case where the hyperparameter being varied is the <em>temperature</em>:</dt><dd><ul>
+<li><p>the PSD array is of shape (k, 1, 1, 1, 1, c)</p></li>
+<li><p>the frequency array is of shape (c)</p></li>
+<li><p>the abscissa array is of shape (k, 1, 1, 1, 1)</p></li>
+<li><p>all the result arrays are of shape (k, 1, 1, 1, 1)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="series-of-measures-on-a-2d-grid">
+<h4>Series of measures on a 2D grid<a class="headerlink" href="#series-of-measures-on-a-2d-grid" title="Link to this heading"></a></h4>
+<p>Let’s consider the scenario of a study performed on 2 varying hyperparameters.</p>
+<section id="case-1-uniform-sampling-on-each-dimension-of-the-grid">
+<h5>Case 1: Uniform sampling on each dimension of the grid<a class="headerlink" href="#case-1-uniform-sampling-on-each-dimension-of-the-grid" title="Link to this heading"></a></h5>
+<p>The first case is when the grid is uniformly sampled on each dimension. Let’s consider <em>k1</em> samples on the first dimension and <em>k2</em> samples on the second dimension. The number of channels is still <em>c</em>.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>In the case where the hyperparameter being varied are the <em>x-axis</em> and <em>y-axis</em>:</dt><dd><ul>
+<li><p>the PSD array is of shape (k1, k2, c)</p></li>
+<li><p>the frequency array is of shape (c)</p></li>
+<li><p>the x abscissa array is of shape (k2, 1)</p></li>
+<li><p>the time abscissa array is of shape (k1, 1, 1)</p></li>
+<li><p>all the result arrays are of shape (k1, k2, 1)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>In the case where the hyperparameter being varied are the <em>x-axis</em> and <em>time</em>:</dt><dd><ul>
+<li><p>the PSD array is of shape (k1, 1, 1 k2, c)</p></li>
+<li><p>the frequency array is of shape (c)</p></li>
+<li><p>the x abscissa array is of shape (k2, 1)</p></li>
+<li><p>the time abscissa array is of shape (k1, 1, 1, 1, 1)</p></li>
+<li><p>all the result arrays are of shape (k1, 1, 1 k2, 1)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>In the case where the hyperparameter being varied are the <em>z-axis</em> and <em>time</em>:</dt><dd><ul>
+<li><p>the PSD array is of shape (k1, k2, 1,  1, c)</p></li>
+<li><p>the frequency array is of shape (c)</p></li>
+<li><p>the z abscissa array is of shape (k2, 1, 1, 1)</p></li>
+<li><p>the time abscissa array is of shape (k1, 1, 1, 1, 1)</p></li>
+<li><p>all the result arrays are of shape (k1, k2, 1, 1, 1)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="case-2-non-uniform-sampling-on-each-dimension-of-the-grid">
+<h5>Case 2: Non-uniform sampling on each dimension of the grid<a class="headerlink" href="#case-2-non-uniform-sampling-on-each-dimension-of-the-grid" title="Link to this heading"></a></h5>
+<p>In this case, the grid is not uniformly sampled on each dimension. This means that the second dimension of the hyperparameter depends on the first. In other terms, if a spectrum was measured at the coordinate (x, y), then it is now measured at the coordinate (x, y(x)). In that case, we broadcast the dimension on the latest dimension of the hyperparameter, and set it’s normal dimension to 1. Let’s consider a total of <em>k</em> measures performed on the grid. The number of channels is still <em>c</em>.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>In the case where the hyperparameter being varied are the <em>x-axis</em> and <em>y-axis</em>:</dt><dd><ul>
+<li><p>the PSD array is of shape (1, k, c)</p></li>
+<li><p>the frequency array is of shape (c)</p></li>
+<li><p>the abscissa array is of shape (1, k, 1)</p></li>
+<li><p>all the result arrays are of shape (1, k, 1)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>In the case where the hyperparameter being varied are the <em>x-axis</em> and <em>time</em>:</dt><dd><ul>
+<li><p>the PSD array is of shape (1, 1, 1, k, c)</p></li>
+<li><p>the frequency array is of shape (c)</p></li>
+<li><p>the x-abscissa array is of shape (1, 1, 1, k, 1)</p></li>
+<li><p>the time abscissa array is of shape (k, 1, 1, 1, 1)</p></li>
+<li><p>all the result arrays are of shape (1, 1, 1, k, 1)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>In the case where the hyperparameter being varied are the <em>z-axis</em> and <em>time</em>:</dt><dd><ul>
+<li><p>the PSD array is of shape (k1, k2, 1, 1, c)</p></li>
+<li><p>the frequency array is of shape (c)</p></li>
+<li><p>the z abscissa array is of shape (1, k, 1, 1, 1)</p></li>
+<li><p>the time abscissa array is of shape (k, 1, 1, 1, 1)</p></li>
+<li><p>all the result arrays are of shape (1, k, 1, 1, 1)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="case-3-non-uniform-sampling-on-higher-dimensions">
+<h5>Case 3: Non-uniform sampling on higher dimensions<a class="headerlink" href="#case-3-non-uniform-sampling-on-higher-dimensions" title="Link to this heading"></a></h5>
+<p>A particularly interesting case in screening is when spectra are acquired as function of random values for an arbitrarily large number of hyper parameters. In this very special case, all the hyper parameters will vary with respect to all other hyper parameters. In this very special case, the user will store his data with the same idea:</p>
+<ul class="simple">
+<li><p>the PSD array is of shape (1, …, 1, k, 1, …, 1, c)</p></li>
+<li><p>the frequency array is of shape (c)</p></li>
+<li><p>all the abscissa arrays associated to any of the hyperparameters will be of shape (1, …, 1, k, 1, …, 1)</p></li>
+<li><p>all the result arrays are of shape (1, …, 1, k, 1, …, 1)</p></li>
+</ul>
+<p>Note that these conventions are to allow data to be stored and shared between the community. In this latter case, it is very unlikely that the user will share these measures with the community, therefore enforcing the present convention is left to the user.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="normalization-rules-for-organizing-hdf5-files">
+<h2>Normalization rules for organizing HDF5 files<a class="headerlink" href="#normalization-rules-for-organizing-hdf5-files" title="Link to this heading"></a></h2>
+<p>The files are organized hierarchically:</p>
+<ul class="simple">
+<li><p>all attributes of parent group apply to children groups (if not redefined in children groups).</p></li>
+<li><p>all attributes of parent group apply to children datasets (if not redefined in children datasets).</p></li>
+<li><p>all abscissa arrays stored in parent group apply to children groups (including if redefined in children groups: multiple abscissa arrays can be associated to the same dimension - e.g. a global positionning and a local positionning abscissa).</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="file_format.html" class="btn btn-neutral float-left" title="The file format" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hdf5_bls_package.html" class="btn btn-neutral float-right" title="The HDF5_BLS package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pierre Bouvet.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

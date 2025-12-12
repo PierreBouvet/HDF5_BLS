@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HDF5_BLS_treat.Treat &mdash; HDF5_BLS v1.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=f8b40d97" />
+
+  
+    <link rel="shortcut icon" href="../../_static/myicon.png"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e562d664"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="HDF5_BLS_treat.TreatmentError" href="HDF5_BLS_treat.TreatmentError.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HDF5_BLS
+              <img src="../../_static/myicon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The HDF5\_BLS project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_nutshell.html">The project in a nutshell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project.html">Project development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_format.html">The file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../normalization.html">Normalization rules for the BioBrillouin community</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_package.html">The HDF5_BLS package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_processing.html">Data Processing with HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_analyse_package.html">The HDF5_BLS_analyse package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_treat_package.html">The HDF5_BLS_treat package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer/presentation.html">Presentation of the project for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/setup.html">Setting up the development environment on Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/add_file_format.html">Adding a new file format to the HDF5_BLS library</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../summary_HDF5_BLS.html">HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../summary_HDF5_BLS_analyse.html">HDF5_BLS_analyse</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../summary_HDF5_BLS_treat.html">HDF5_BLS_treat</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="HDF5_BLS_treat.Treat_backend.html">HDF5_BLS_treat.Treat_backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HDF5_BLS_treat.Models.html">HDF5_BLS_treat.Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HDF5_BLS_treat.TreatmentError.html">HDF5_BLS_treat.TreatmentError</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HDF5_BLS_treat.Treat</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HDF5_BLS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../summary_HDF5_BLS_treat.html">HDF5_BLS_treat</a></li>
+      <li class="breadcrumb-item active">HDF5_BLS_treat.Treat</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/_autosummary/HDF5_BLS_treat.Treat.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hdf5-bls-treat-treat">
+<h1>HDF5_BLS_treat.Treat<a class="headerlink" href="#hdf5-bls-treat-treat" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">HDF5_BLS_treat.</span></span><span class="sig-name descname"><span class="pre">Treat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PSD</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="HDF5_BLS_treat.Treat_backend.html#HDF5_BLS_treat.Treat_backend" title="HDF5_BLS_treat.treat_backend.Treat_backend"><code class="xref py py-class docutils literal notranslate"><span class="pre">Treat_backend</span></code></a></p>
+<p>This class is a class inherited from the Treat_backend class used to define functions to treat the data. Each function is meant to perform the minimum of operation so as to give the user a total control over the treatment.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PSD</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the class by storing the PSD and frequency arrays. Also initializes the sample sub-arrays using the frequency_sample_dimension parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frequency</strong> (<em>np.ndarray</em>) – An array corresponding to the frequency axis of the PSD</p></li>
+<li><p><strong>PSD</strong> (<em>np.ndarray</em>) – An array corresponding to the power spectral density to treat</p></li>
+<li><p><strong>frequency_sample_dimension</strong> (<em>tuple</em><em>, </em><em>optional</em>) – The tuple leading to the 1-D array to use as frequency axis. By default, the first dimension of the frequency is used.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.__init__" title="HDF5_BLS_treat.Treat.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(frequency, PSD)</p></td>
+<td><p>Initializes the class by storing the PSD and frequency arrays.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.add_point" title="HDF5_BLS_treat.Treat.add_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_point</span></code></a>([position_center_window, ...])</p></td>
+<td><p>Adds a single point to the list of points together with a window to the list of windows with its type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.add_window" title="HDF5_BLS_treat.Treat.add_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_window</span></code></a>([position_center_window, ...])</p></td>
+<td><p>Adds a single window to the list of windows together with the central point (with type &quot;Window&quot;) to the list of windows.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.adjust_treatment_on_errors" title="HDF5_BLS_treat.Treat.adjust_treatment_on_errors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjust_treatment_on_errors</span></code></a>([position, ...])</p></td>
+<td><p>Reapplies the treatment on the point error located at the position &quot;position&quot; with the new parameters &quot;new_parameters&quot;.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.apply_algorithm_on_all" title="HDF5_BLS_treat.Treat.apply_algorithm_on_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_algorithm_on_all</span></code></a>()</p></td>
+<td><p>Takes all the steps of the algorithm up to the moment this function is called and applies the steps to each individual spectrum in the dataset.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.blind_deconvolution" title="HDF5_BLS_treat.Treat.blind_deconvolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">blind_deconvolution</span></code></a>([default_width])</p></td>
+<td><p>Subtracts a constant width to all the linewidth array and recomputes the BLT array.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.combine_results_FSR" title="HDF5_BLS_treat.Treat.combine_results_FSR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combine_results_FSR</span></code></a>([FSR, ...])</p></td>
+<td><p>Combines the results of the algorithm to have a value for frequency shift based on a known Free Spectral Range (FSR) value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.define_model" title="HDF5_BLS_treat.Treat.define_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">define_model</span></code></a>([model, elastic_correction])</p></td>
+<td><p>Defines the model to be used to fit the data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.estimate_width_inelastic_peaks" title="HDF5_BLS_treat.Treat.estimate_width_inelastic_peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_width_inelastic_peaks</span></code></a>([max_width_guess])</p></td>
+<td><p>Estimates the full width at half maximum of the inelastic peaks stored in self.points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.fit_all_inelastic_of_curve" title="HDF5_BLS_treat.Treat.fit_all_inelastic_of_curve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_all_inelastic_of_curve</span></code></a>([default_width, ...])</p></td>
+<td><p>Fits a lineshape to each of the inelastic peaks using the points stored as Stokes or Anti-Stokes peaks in the points attribute.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.mark_errors_BLT" title="HDF5_BLS_treat.Treat.mark_errors_BLT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mark_errors_BLT</span></code></a>([min_BLT, max_BLT])</p></td>
+<td><p>Marks the points that present a value of BLT above or below given thresholds.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.mark_errors_linewidth" title="HDF5_BLS_treat.Treat.mark_errors_linewidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mark_errors_linewidth</span></code></a>([min_linewidth, ...])</p></td>
+<td><p>Marks the points that present a value of linewidth above or below given thresholds.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.mark_errors_shift" title="HDF5_BLS_treat.Treat.mark_errors_shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mark_errors_shift</span></code></a>([min_shift, max_shift])</p></td>
+<td><p>Marks the points that present a value of shift above or below given thresholds.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.mark_errors_std_BLT" title="HDF5_BLS_treat.Treat.mark_errors_std_BLT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mark_errors_std_BLT</span></code></a>([max_error_BLT_variance])</p></td>
+<td><p>Marks the points that present a variance of the BLT greater than a certain threshold.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.mark_errors_std_linewidth" title="HDF5_BLS_treat.Treat.mark_errors_std_linewidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mark_errors_std_linewidth</span></code></a>([...])</p></td>
+<td><p>Marks the points that present a variance of the linewidth greater than a certain threshold.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.mark_errors_std_shift" title="HDF5_BLS_treat.Treat.mark_errors_std_shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mark_errors_std_shift</span></code></a>([max_error_shift_variance])</p></td>
+<td><p>Marks the points that present a variance of the shift greater than a certain threshold.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.mark_point_error" title="HDF5_BLS_treat.Treat.mark_point_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mark_point_error</span></code></a>(position)</p></td>
+<td><p>Forces a point located at the position &quot;position&quot; to be considered as an error.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.multi_fit_all_inelastic" title="HDF5_BLS_treat.Treat.multi_fit_all_inelastic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multi_fit_all_inelastic</span></code></a>([default_width, ...])</p></td>
+<td><p>Fits all inelastically scattered peak as a single curve.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.normalize_data" title="HDF5_BLS_treat.Treat.normalize_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_data</span></code></a>([threshold_noise])</p></td>
+<td><p>Normalizes the data by identifying the regions corresponding to noise, substracting the average of these regions from the data, and dividing by the average of the amplitude of all peaks that are not of type elastic.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_clear_points</span></code>()</p></td>
+<td><p>Clears the list of points and the list of windows.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_create_algorithm</span></code>([algorithm_name, ...])</p></td>
+<td><p>Creates a new JSON algorithm with the given name, version, author and description.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_move_step</span></code>(step, new_step)</p></td>
+<td><p>Moves a step from one position to another in the _algorithm attribute.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_open_algorithm</span></code>([filepath])</p></td>
+<td><p>Opens an existing JSON algorithm and stores it in the _algorithm attribute.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_remove_step</span></code>([step])</p></td>
+<td><p>Removes the step from the _history attribute of the class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_return_string_algorithm</span></code>()</p></td>
+<td><p>Returns a string representation of the algorithm stored in the _algorithm attribute of the class.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_run_algorithm</span></code>([step, algorithm])</p></td>
+<td><p>Runs an algorithm.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">silent_save_algorithm</span></code>([filepath, ...])</p></td>
+<td><p>Saves the algorithm to a JSON file with or without the parameters used.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Treat.single_fit_all_inelastic" title="HDF5_BLS_treat.Treat.single_fit_all_inelastic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">single_fit_all_inelastic</span></code></a>([default_width, ...])</p></td>
+<td><p>Fits each inelastically scattered peak individually.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.add_point">
+<span class="sig-name descname"><span class="pre">add_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position_center_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_pnt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Other'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.add_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.add_point" title="Link to this definition"></a></dt>
+<dd><p>Adds a single point to the list of points together with a window to the list of windows with its type. Each point is an intensity extremum obtained by fitting a quadratic polynomial to the windowed data.
+The point is given as a value on the frequency axis (not a position on this axis).
+The “position_center_window” parameter is the center of the window surrounding the peak. The “window_width” parameter is the width of the window surrounding the peak (full width). The “type_pnt” parameter is the type of the peak. It can be either “Stokes”, “Anti-Stokes”, “Elastic” or “Other”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>position_center_window</strong> (<em>float</em>) – A value on the self.x axis corresponding to the center of a window surrounding a peak</p></li>
+<li><p><strong>window_width</strong> (<em>float</em><em> or </em><em>2-tuple</em><em> of </em><em>float</em>) – A value on the self.x axis corresponding to the width of a window surrounding a peak. If a tuple is given, the first element is the lower bound of the window and the second element is the upper bound given in absolute value from center point.</p></li>
+<li><p><strong>type_pnt</strong> (<em>str</em>) – The nature of the peak. Must be one of the following: “Other”,”Stokes”, “Anti-Stokes” or “Elastic”</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.add_window">
+<span class="sig-name descname"><span class="pre">add_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position_center_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.add_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.add_window" title="Link to this definition"></a></dt>
+<dd><p>Adds a single window to the list of windows together with the central point (with type “Window”) to the list of windows.
+The positions are given as values on the frequency axis (not a position).
+The “position_center_window” parameter is the center of the window surrounding the peak. The “window_width” parameter is the width of the window surrounding the peak (full width).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>position_center_window</strong> (<em>float</em>) – A value on the self.x axis corresponding to the center of a window surrounding a peak</p></li>
+<li><p><strong>window</strong> (<em>float</em>) – A value on the self.x axis corresponding to the width of a window surrounding a peak</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.adjust_treatment_on_errors">
+<span class="sig-name descname"><span class="pre">adjust_treatment_on_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.adjust_treatment_on_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.adjust_treatment_on_errors" title="Link to this definition"></a></dt>
+<dd><p>Reapplies the treatment on the point error located at the position “position” with the new parameters “new_parameters”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>position</strong> (<em>list</em><em>, </em><em>optional</em>) – The position of the point error to be adjusted. Default is None.</p></li>
+<li><p><strong>new_parameters</strong> (<em>list</em><em> of </em><em>dictionnaries</em><em>, </em><em>optional</em>) – The list of new parameters to be applied to re-run the treatment on the errors. Each element is either None (if we don’t change the parameters) or a dictionnary of the parameters to be passed to the function. Default is None, means that all the parameters used earlier are used.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.apply_algorithm_on_all">
+<span class="sig-name descname"><span class="pre">apply_algorithm_on_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.apply_algorithm_on_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.apply_algorithm_on_all" title="Link to this definition"></a></dt>
+<dd><p>Takes all the steps of the algorithm up to the moment this function is called and applies the steps to each individual spectrum in the dataset.
+This function updates the global attributes of the class concerning the shift, the linewidth and the amplitude together with their variance, taking into account error propagation.
+If a spectrum could not be fitted, its value is set to 0 in the global attributes.
+All the points where the spectra could not be fitted are marked with the “fit_error_marker” parameter in the global attributes (shift, linewidth, amplitude, shift_var, linewidth_var, amplitude_var) and their coordinates are stored in the “point_error” list. The “point_error_type” attribute is also updated with the type of error returned by the fit function (see scipy.optimize.curve_fit documentation). The function returns the number of spectra that could not be fitted.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.blind_deconvolution">
+<span class="sig-name descname"><span class="pre">blind_deconvolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.blind_deconvolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.blind_deconvolution" title="Link to this definition"></a></dt>
+<dd><p>Subtracts a constant width to all the linewidth array and recomputes the BLT array. If default_width is not specified, the width is estimated by fitting a Lorentzian to the most proeminent elastic peak. If no elastic peak are specified, and default_width is not specified, no deconvolution is performed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>default_width</strong> (<em>float</em><em>, </em><em>optional</em>) – The value of the width to subtract to the linewidth array, by default None. If None, the width is estimated by fitting a Lorentzian to the most proeminent elastic peak.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.combine_results_FSR">
+<span class="sig-name descname"><span class="pre">combine_results_FSR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FSR</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_max_amplitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift_err_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.combine_results_FSR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.combine_results_FSR" title="Link to this definition"></a></dt>
+<dd><p>Combines the results of the algorithm to have a value for frequency shift based on a known Free Spectral Range (FSR) value. The end shift value is obtained by “moving” the peak by a FSR value until the peak is within the [-FSR/2, FSR/2] range. Then the absolute value of the shift is taken as the end shift value.
+The combination of the result is done by taking the average of all the values by default. Alternatively, the user can choose to keep the maximum of the amplitude of the peak by setting the “keep_max_amplitude” parameter to True. The user can also choose to weight the shift and linewidth by the amplitude of the peak by setting the “amplitude_weight” parameter to True. Note that in the latter case, the precise knowledge of the frequency axis is a must as averaging slightly uncentered peaks will lead to a wrong result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>FSR</strong> (<em>float</em><em>, </em><em>optional</em>) – The Free Spectral Range of the spectrometer, by default 15Ghz</p></li>
+<li><p><strong>keep_max_amplitude</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the maximum of the peak amplitude is stored in the amplitude array. If False, an average of all the amplitudes is stored. Default is False.</p></li>
+<li><p><strong>amplitude_weight</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the amplitude of the spectra is used to weight the shift and linewidth. If set to false, a simple average is performed. Default is False.</p></li>
+<li><p><strong>shift_err_weight</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the inverse of the standard deviation of the shift is used to weight the shift and linewidth. If set to false, a simple average is performed. Default is False.</p></li>
+<li><p><strong>position</strong> (<em>list</em><em>, </em><em>optional</em>) – The position of the spectrum to be updated in case we combine the sampled results. This is used to update the values of a spectrum that has been re-fitted.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.define_model">
+<span class="sig-name descname"><span class="pre">define_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Lorentzian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elastic_correction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.define_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.define_model" title="Link to this definition"></a></dt>
+<dd><p>Defines the model to be used to fit the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – The model to be used. The models should match the names of the attribute “models” of the class Models, by default “Lorentzian”</p></li>
+<li><p><strong>elastic_correction</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to correct for the presence of an elastic peak by setting adding a linear function to the model, by default False</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.estimate_width_inelastic_peaks">
+<span class="sig-name descname"><span class="pre">estimate_width_inelastic_peaks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_width_guess</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.estimate_width_inelastic_peaks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.estimate_width_inelastic_peaks" title="Link to this definition"></a></dt>
+<dd><p>Estimates the full width at half maximum of the inelastic peaks stored in self.points. Note that the data is supposed to have a zero offset. The estimation is done by finding the samples of the data closes to half of the peak height.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_width_guess</strong> (<em>float</em><em>, </em><em>optional</em>) – The higher limit to the estimation of the full width. Default is 2 GHz.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.fit_all_inelastic_of_curve">
+<span class="sig-name descname"><span class="pre">fit_all_inelastic_of_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guess_offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_point_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_linewidth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.fit_all_inelastic_of_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.fit_all_inelastic_of_curve" title="Link to this definition"></a></dt>
+<dd><p>Fits a lineshape to each of the inelastic peaks using the points stored as Stokes or Anti-Stokes peaks in the points attribute. The linewidth can be estimated beforehand using the function estimate_width_inelastic_peaks. If not estimated, a fixed width is used (default_width). The offset can also be guessed or not (guess_offset). In the case the offset is guessed, the minimum of the data on the selected window is used as an initial guess. The position of the peak can also be updated based on the fitted shift if update_point_position is set to True. If set to False, the positions are not updated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>default_width</strong> (<em>float</em><em>, </em><em>optional</em>) – If the width has not been estimated, the default width to use, by default 1 GHz</p></li>
+<li><p><strong>guess_offset</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the offset is guessed based on the minimum of the data on the selected window. If false, the data is supposed to be normalized and the offset guess is set to 0, by default False</p></li>
+<li><p><strong>update_point_position</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the position of the peak is updated based on the fitted shift. If False, the position of the peak is not updated, by default True</p></li>
+<li><p><strong>bound_shift</strong> (<em>list</em><em>, </em><em>optional</em>) – The lower and upper bounds of the shift, by default None means no restrictions are applied</p></li>
+<li><p><strong>bound_linewidth</strong> (<em>list</em><em>, </em><em>optional</em>) – The lower and upper bounds of the linewidth, by default None means no restrictions are applied</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.mark_errors_BLT">
+<span class="sig-name descname"><span class="pre">mark_errors_BLT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_BLT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_BLT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.mark_errors_BLT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.mark_errors_BLT" title="Link to this definition"></a></dt>
+<dd><p>Marks the points that present a value of BLT above or below given thresholds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min_shift</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold below which the shift is marked as an error , by default 0GHz</p></li>
+<li><p><strong>max_shift</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold above which the shift is marked as an error , by default 10GHz</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.mark_errors_linewidth">
+<span class="sig-name descname"><span class="pre">mark_errors_linewidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_linewidth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_linewidth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.mark_errors_linewidth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.mark_errors_linewidth" title="Link to this definition"></a></dt>
+<dd><p>Marks the points that present a value of linewidth above or below given thresholds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min_linewidth</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold below which the linewidth is marked as an error , by default 0GHz</p></li>
+<li><p><strong>max_linewidth</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold above which the linewidth is marked as an error , by default 10GHz</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.mark_errors_shift">
+<span class="sig-name descname"><span class="pre">mark_errors_shift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.mark_errors_shift"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.mark_errors_shift" title="Link to this definition"></a></dt>
+<dd><p>Marks the points that present a value of shift above or below given thresholds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min_shift</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold below which the shift is marked as an error , by default 0GHz</p></li>
+<li><p><strong>max_shift</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold above which the shift is marked as an error , by default 10GHz</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.mark_errors_std_BLT">
+<span class="sig-name descname"><span class="pre">mark_errors_std_BLT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_error_BLT_variance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.005</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.mark_errors_std_BLT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.mark_errors_std_BLT" title="Link to this definition"></a></dt>
+<dd><p>Marks the points that present a variance of the BLT greater than a certain threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_error_shift_err</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold above which the shift is marked as an error , by default 5MHz</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.mark_errors_std_linewidth">
+<span class="sig-name descname"><span class="pre">mark_errors_std_linewidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_error_linewidth_variance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.005</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.mark_errors_std_linewidth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.mark_errors_std_linewidth" title="Link to this definition"></a></dt>
+<dd><p>Marks the points that present a variance of the linewidth greater than a certain threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_error_linewidth_variance</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold above which the linewidth is marked as an error , by default 5MHz</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.mark_errors_std_shift">
+<span class="sig-name descname"><span class="pre">mark_errors_std_shift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_error_shift_variance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.005</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.mark_errors_std_shift"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.mark_errors_std_shift" title="Link to this definition"></a></dt>
+<dd><p>Marks the points that present a variance of the shift greater than a certain threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_error_shift_err</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold above which the shift is marked as an error , by default 5MHz</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.mark_point_error">
+<span class="sig-name descname"><span class="pre">mark_point_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.mark_point_error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.mark_point_error" title="Link to this definition"></a></dt>
+<dd><p>Forces a point located at the position “position” to be considered as an error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>position</strong> (<em>list</em>) – The position of the point error to be marked.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.multi_fit_all_inelastic">
+<span class="sig-name descname"><span class="pre">multi_fit_all_inelastic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guess_offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_point_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_linewidth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.multi_fit_all_inelastic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.multi_fit_all_inelastic" title="Link to this definition"></a></dt>
+<dd><p>Fits all inelastically scattered peak as a single curve. The linewidth of the individual peaks can be estimated beforehand using the function estimate_width_inelastic_peaks. If not estimated, a fixed width is used (default_width). The offset can also be guessed or not (guess_offset). In the case the offset is guessed, the minimum of the data on the window defined as the combination of all the peaks windoes is used as an initial guess.
+When applying the fit to data acquired successively, it might be interesting to update the initial position of the peak by selecting the last fitted position. This can be done by setting update_point_position to True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>default_width</strong> (<em>float</em><em>, </em><em>optional</em>) – If the width has not been estimated, the default width to use, by default 1 GHz</p></li>
+<li><p><strong>guess_offset</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the offset is guessed based on the minimum of the data on the selected window. If false, the data is supposed to be normalized and the offset guess is set to 0, by default False</p></li>
+<li><p><strong>update_point_position</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the position of the peak is updated based on the fitted shift. If False, the position of the peak is not updated, by default True</p></li>
+<li><p><strong>bound_shift</strong> (<em>list</em><em>, </em><em>optional</em>) – The lower and upper bounds of the shift, by default None means no restrictions are applied</p></li>
+<li><p><strong>bound_linewidth</strong> (<em>list</em><em>, </em><em>optional</em>) – The lower and upper bounds of the linewidth, by default None means no restrictions are applied</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.normalize_data">
+<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold_noise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.normalize_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.normalize_data" title="Link to this definition"></a></dt>
+<dd><p>Normalizes the data by identifying the regions corresponding to noise, substracting the average of these regions from the data, and dividing by the average of the amplitude of all peaks that are not of type elastic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>threshold_noise</strong> (<em>float</em><em>, </em><em>optional</em>) – The threshold for identifying noise regions. This value is the highest possible value for noise relative to the average intensity of the selected peaks, on the PSD when the minimal value of the PSD is brought to 0. Default is 1%</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Treat.single_fit_all_inelastic">
+<span class="sig-name descname"><span class="pre">single_fit_all_inelastic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guess_offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_point_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_linewidth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/treat.html#Treat.single_fit_all_inelastic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Treat.single_fit_all_inelastic" title="Link to this definition"></a></dt>
+<dd><p>Fits each inelastically scattered peak individually. The linewidth can be estimated beforehand using the function estimate_width_inelastic_peaks. If not estimated, a fixed width is used (default_width). The offset can also be guessed or not (guess_offset). In the case the offset is guessed, the minimum of the data on the selected window is used as an initial guess.
+When applying the fit to data acquired successively, it might be interesting to update the initial position of the peak by selecting the last fitted position. This can be done by setting update_point_position to True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>default_width</strong> (<em>float</em><em>, </em><em>optional</em>) – If the width has not been estimated, the default width to use, by default 1 GHz</p></li>
+<li><p><strong>guess_offset</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the offset is guessed based on the minimum of the data on the selected window. If false, the data is supposed to be normalized and the offset guess is set to 0, by default False</p></li>
+<li><p><strong>update_point_position</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the position of the peak is updated based on the fitted shift. If False, the position of the peak is not updated, by default True</p></li>
+<li><p><strong>bound_shift</strong> (<em>list</em><em>, </em><em>optional</em>) – The lower and upper bounds of the shift, by default None means no restrictions are applied</p></li>
+<li><p><strong>bound_linewidth</strong> (<em>list</em><em>, </em><em>optional</em>) – The lower and upper bounds of the linewidth, by default None means no restrictions are applied</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="HDF5_BLS_treat.TreatmentError.html" class="btn btn-neutral float-left" title="HDF5_BLS_treat.TreatmentError" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pierre Bouvet.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

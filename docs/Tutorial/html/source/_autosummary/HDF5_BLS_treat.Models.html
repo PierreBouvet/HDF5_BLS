@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HDF5_BLS_treat.Models &mdash; HDF5_BLS v1.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=f8b40d97" />
+
+  
+    <link rel="shortcut icon" href="../../_static/myicon.png"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e562d664"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="HDF5_BLS_treat.TreatmentError" href="HDF5_BLS_treat.TreatmentError.html" />
+    <link rel="prev" title="HDF5_BLS_treat.Treat_backend" href="HDF5_BLS_treat.Treat_backend.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HDF5_BLS
+              <img src="../../_static/myicon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The HDF5\_BLS project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_nutshell.html">The project in a nutshell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project.html">Project development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_format.html">The file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../normalization.html">Normalization rules for the BioBrillouin community</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_package.html">The HDF5_BLS package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_processing.html">Data Processing with HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_analyse_package.html">The HDF5_BLS_analyse package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_treat_package.html">The HDF5_BLS_treat package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer/presentation.html">Presentation of the project for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/setup.html">Setting up the development environment on Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/add_file_format.html">Adding a new file format to the HDF5_BLS library</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../summary_HDF5_BLS.html">HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../summary_HDF5_BLS_analyse.html">HDF5_BLS_analyse</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../summary_HDF5_BLS_treat.html">HDF5_BLS_treat</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="HDF5_BLS_treat.Treat_backend.html">HDF5_BLS_treat.Treat_backend</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HDF5_BLS_treat.Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HDF5_BLS_treat.TreatmentError.html">HDF5_BLS_treat.TreatmentError</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HDF5_BLS_treat.Treat.html">HDF5_BLS_treat.Treat</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HDF5_BLS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../summary_HDF5_BLS_treat.html">HDF5_BLS_treat</a></li>
+      <li class="breadcrumb-item active">HDF5_BLS_treat.Models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/_autosummary/HDF5_BLS_treat.Models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hdf5-bls-treat-models">
+<h1>HDF5_BLS_treat.Models<a class="headerlink" href="#hdf5-bls-treat-models" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Models">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">HDF5_BLS_treat.</span></span><span class="sig-name descname"><span class="pre">Models</span></span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/models.html#Models"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Models" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class repertoriates all the models that can be used for the fit.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Models.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/models.html#Models.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Models.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Models.DHO" title="HDF5_BLS_treat.Models.DHO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DHO</span></code></a>(nu, b, a, nu0, gamma[, IR])</p></td>
+<td><p>Model of a simple lorentzian lineshape</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Models.DHO_elastic" title="HDF5_BLS_treat.Models.DHO_elastic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DHO_elastic</span></code></a>(nu, ae, be, a, nu0, gamma[, IR])</p></td>
+<td><p>Model of a simple lorentzian lineshape</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Models.__init__" title="HDF5_BLS_treat.Models.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Models.gaussian" title="HDF5_BLS_treat.Models.gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gaussian</span></code></a>(nu, b, a, nu0, gamma[, IR])</p></td>
+<td><p>Model of a simple gaussian lineshape :param nu: The frequency array :type nu: array :param b: The constant offset of the data :type b: float :param a: The amplitude of the peak :type a: float :param nu0: The center position of the function :type nu0: float :param gamma: The linewidth of the function :type gamma: float :param IR: The impulse response of the instrument, by default None :type IR: array, optional</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Models.lorentzian" title="HDF5_BLS_treat.Models.lorentzian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lorentzian</span></code></a>(nu, b, a, nu0, gamma[, IR])</p></td>
+<td><p>Model of a simple lorentzian lineshape</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Models.lorentzian_elastic" title="HDF5_BLS_treat.Models.lorentzian_elastic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lorentzian_elastic</span></code></a>(nu, ae, be, a, nu0, gamma)</p></td>
+<td><p>Model of a simple lorentzian lineshape</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#HDF5_BLS_treat.Models.models" title="HDF5_BLS_treat.Models.models"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Models.DHO">
+<span class="sig-name descname"><span class="pre">DHO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/models.html#Models.DHO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Models.DHO" title="Link to this definition"></a></dt>
+<dd><p>Model of a simple lorentzian lineshape</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nu</strong> (<em>array</em>) – The frequency array</p></li>
+<li><p><strong>b</strong> (<em>float</em>) – The constant offset of the data</p></li>
+<li><p><strong>a</strong> (<em>float</em>) – The amplitude of the peak</p></li>
+<li><p><strong>nu0</strong> (<em>float</em>) – The center position of the function</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – The linewidth of the function</p></li>
+<li><p><strong>IR</strong> (<em>array</em><em>, </em><em>optional</em>) – The impulse response of the instrument, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The function associated to the given parameters</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Models.DHO_elastic">
+<span class="sig-name descname"><span class="pre">DHO_elastic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ae</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">be</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/models.html#Models.DHO_elastic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Models.DHO_elastic" title="Link to this definition"></a></dt>
+<dd><p>Model of a simple lorentzian lineshape</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nu</strong> (<em>array</em>) – The frequency array</p></li>
+<li><p><strong>ae</strong> (<em>float</em>) – The slope of the first order Taylor expansion of the elastic peak at the position of the peak fitted</p></li>
+<li><p><strong>be</strong> (<em>float</em>) – The constant offset of the data</p></li>
+<li><p><strong>a</strong> (<em>float</em>) – The amplitude of the peak</p></li>
+<li><p><strong>nu0</strong> (<em>float</em>) – The center position of the function</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – The linewidth of the function</p></li>
+<li><p><strong>IR</strong> (<em>array</em><em>, </em><em>optional</em>) – The impulse response of the instrument, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The function associated to the given parameters</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Models.gaussian">
+<span class="sig-name descname"><span class="pre">gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/models.html#Models.gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Models.gaussian" title="Link to this definition"></a></dt>
+<dd><p>Model of a simple gaussian lineshape
+:param nu: The frequency array
+:type nu: array
+:param b: The constant offset of the data
+:type b: float
+:param a: The amplitude of the peak
+:type a: float
+:param nu0: The center position of the function
+:type nu0: float
+:param gamma: The linewidth of the function
+:type gamma: float
+:param IR: The impulse response of the instrument, by default None
+:type IR: array, optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The function associated to the given parameters</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Models.lorentzian">
+<span class="sig-name descname"><span class="pre">lorentzian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/models.html#Models.lorentzian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Models.lorentzian" title="Link to this definition"></a></dt>
+<dd><p>Model of a simple lorentzian lineshape</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nu</strong> (<em>array</em>) – The frequency array</p></li>
+<li><p><strong>b</strong> (<em>float</em>) – The constant offset of the data</p></li>
+<li><p><strong>a</strong> (<em>float</em>) – The amplitude of the peak</p></li>
+<li><p><strong>nu0</strong> (<em>float</em>) – The center position of the function</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – The linewidth of the function</p></li>
+<li><p><strong>IR</strong> (<em>array</em><em>, </em><em>optional</em>) – The impulse response of the instrument, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The function associated to the given parameters</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Models.lorentzian_elastic">
+<span class="sig-name descname"><span class="pre">lorentzian_elastic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ae</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">be</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/HDF5_BLS_treat/models.html#Models.lorentzian_elastic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#HDF5_BLS_treat.Models.lorentzian_elastic" title="Link to this definition"></a></dt>
+<dd><p>Model of a simple lorentzian lineshape</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nu</strong> (<em>array</em>) – The frequency array</p></li>
+<li><p><strong>ae</strong> (<em>float</em>) – The slope of the first order Taylor expansion of the elastic peak at the position of the peak fitted</p></li>
+<li><p><strong>be</strong> (<em>float</em>) – The constant offset of the data</p></li>
+<li><p><strong>a</strong> (<em>float</em>) – The amplitude of the peak</p></li>
+<li><p><strong>nu0</strong> (<em>float</em>) – The center position of the function</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – The linewidth of the function</p></li>
+<li><p><strong>IR</strong> (<em>array</em><em>, </em><em>optional</em>) – The impulse response of the instrument, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The function associated to the given parameters</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5_BLS_treat.Models.models">
+<span class="sig-name descname"><span class="pre">models</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#HDF5_BLS_treat.Models.models" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="HDF5_BLS_treat.Treat_backend.html" class="btn btn-neutral float-left" title="HDF5_BLS_treat.Treat_backend" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="HDF5_BLS_treat.TreatmentError.html" class="btn btn-neutral float-right" title="HDF5_BLS_treat.TreatmentError" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pierre Bouvet.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

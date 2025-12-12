@@ -1,0 +1,225 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter {\sphinxsymbolsname}
+  \item \spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{65}
+  \item \spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}, \hyperpage{86}
+  \item \spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}, 
+		\hyperpage{84}
+  \item \spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS\_analyse.Analyse\_general method}, 
+		\hyperpage{85}
+  \item \spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS\_treat.Models method}, \hyperpage{92}
+  \item \spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS\_treat.Treat method}, \hyperpage{95}
+  \item \spxentry{\_\_init\_\_()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}, \hyperpage{90}
+
+  \indexspace
+  \bigletter A
+  \item \spxentry{add\_abscissa()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{68}
+  \item \spxentry{add\_attributes()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{68}
+  \item \spxentry{add\_dictionary()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{68}
+  \item \spxentry{add\_dictionnary()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{69}
+  \item \spxentry{add\_frequency()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{70}
+  \item \spxentry{add\_hdf5()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{70}
+  \item \spxentry{add\_other()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{71}
+  \item \spxentry{add\_point()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}, \hyperpage{87}
+  \item \spxentry{add\_point()}\spxextra{HDF5\_BLS\_treat.Treat method}, \hyperpage{96}
+  \item \spxentry{add\_PSD()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{67}
+  \item \spxentry{add\_raw\_data()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{71}
+  \item \spxentry{add\_treated\_data()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{72}
+  \item \spxentry{add\_window()}\spxextra{HDF5\_BLS\_treat.Treat method}, \hyperpage{97}
+  \item \spxentry{adjust\_treatment\_on\_errors()}\spxextra{HDF5\_BLS\_treat.Treat method}, 
+		\hyperpage{97}
+  \item \spxentry{Analyse\_backend}\spxextra{class in HDF5\_BLS\_analyse}, \hyperpage{83}
+  \item \spxentry{Analyse\_general}\spxextra{class in HDF5\_BLS\_analyse}, \hyperpage{85}
+  \item \spxentry{Analyse\_VIPA}\spxextra{class in HDF5\_BLS\_analyse}, \hyperpage{86}
+  \item \spxentry{apply\_algorithm\_on\_all()}\spxextra{HDF5\_BLS\_treat.Treat method}, 
+		\hyperpage{97}
+
+  \indexspace
+  \bigletter B
+  \item \spxentry{blind\_deconvolution()}\spxextra{HDF5\_BLS\_treat.Treat method}, \hyperpage{97}
+  \item \spxentry{BRILLOUIN\_TYPES\_DATASETS}\spxextra{HDF5\_BLS.Wrapper attribute}, \hyperpage{67}
+  \item \spxentry{BRILLOUIN\_TYPES\_GROUPS}\spxextra{HDF5\_BLS.Wrapper attribute}, \hyperpage{67}
+
+  \indexspace
+  \bigletter C
+  \item \spxentry{center\_x\_axis()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}, 
+		\hyperpage{88}
+  \item \spxentry{change\_brillouin\_type()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{72}
+  \item \spxentry{change\_name()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{72}
+  \item \spxentry{clear\_empty\_attributes()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{73}
+  \item \spxentry{close()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{73}
+  \item \spxentry{combine\_datasets()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{73}
+  \item \spxentry{combine\_results\_FSR()}\spxextra{HDF5\_BLS\_treat.Treat method}, \hyperpage{97}
+  \item \spxentry{compatibility\_changes()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{73}
+  \item \spxentry{copy\_dataset()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{73}
+  \item \spxentry{create\_group()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{73}
+
+  \indexspace
+  \bigletter D
+  \item \spxentry{define\_model()}\spxextra{HDF5\_BLS\_treat.Treat method}, \hyperpage{98}
+  \item \spxentry{delete\_element()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{74}
+  \item \spxentry{DHO()}\spxextra{HDF5\_BLS\_treat.Models method}, \hyperpage{93}
+  \item \spxentry{DHO\_elastic()}\spxextra{HDF5\_BLS\_treat.Models method}, \hyperpage{93}
+
+  \indexspace
+  \bigletter E
+  \item \spxentry{estimate\_width\_inelastic\_peaks()}\spxextra{HDF5\_BLS\_treat.Treat method}, 
+		\hyperpage{98}
+  \item \spxentry{export\_brim()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{74}
+  \item \spxentry{export\_dataset()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{74}
+  \item \spxentry{export\_group()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{74}
+  \item \spxentry{export\_image()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{74}
+
+  \indexspace
+  \bigletter F
+  \item \spxentry{filepath}\spxextra{HDF5\_BLS.Wrapper attribute}, \hyperpage{65}
+  \item \spxentry{fit\_all\_inelastic\_of\_curve()}\spxextra{HDF5\_BLS\_treat.Treat method}, 
+		\hyperpage{98}
+
+  \indexspace
+  \bigletter G
+  \item \spxentry{gaussian()}\spxextra{HDF5\_BLS\_treat.Models method}, \hyperpage{94}
+  \item \spxentry{get\_attributes()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{75}
+  \item \spxentry{get\_children\_elements()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{75}
+  \item \spxentry{get\_special\_groups\_hierarchy()}\spxextra{HDF5\_BLS.Wrapper method}, 
+		\hyperpage{75}
+  \item \spxentry{get\_structure()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{76}
+  \item \spxentry{get\_type()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{76}
+
+  \indexspace
+  \bigletter H
+  \item \spxentry{HDF5\_BLS.errors}
+    \subitem \spxentry{module}, \hyperpage{81}
+  \item \spxentry{HDF5\_BLS.load\_data}
+    \subitem \spxentry{module}, \hyperpage{79}
+
+  \indexspace
+  \bigletter I
+  \item \spxentry{import\_other()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{76}
+  \item \spxentry{import\_properties\_data()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{77}
+  \item \spxentry{import\_PSD()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{76}
+  \item \spxentry{import\_raw\_data()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{77}
+  \item \spxentry{interpolate\_between\_one\_order()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}, 
+		\hyperpage{88}
+  \item \spxentry{interpolate\_elastic()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}, 
+		\hyperpage{88}
+  \item \spxentry{interpolate\_elastic\_inelastic()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}, 
+		\hyperpage{88}
+  \item \spxentry{interpolate\_on\_one\_order()}\spxextra{HDF5\_BLS\_analyse.Analyse\_VIPA method}, 
+		\hyperpage{88}
+
+  \indexspace
+  \bigletter L
+  \item \spxentry{load\_dat\_file()}\spxextra{in module HDF5\_BLS.load\_data}, \hyperpage{80}
+  \item \spxentry{load\_general()}\spxextra{in module HDF5\_BLS.load\_data}, \hyperpage{80}
+  \item \spxentry{load\_image\_file()}\spxextra{in module HDF5\_BLS.load\_data}, \hyperpage{80}
+  \item \spxentry{load\_npy\_file()}\spxextra{in module HDF5\_BLS.load\_data}, \hyperpage{81}
+  \item \spxentry{load\_sif\_file()}\spxextra{in module HDF5\_BLS.load\_data}, \hyperpage{81}
+  \item \spxentry{lorentzian()}\spxextra{HDF5\_BLS\_treat.Models method}, \hyperpage{94}
+  \item \spxentry{lorentzian\_elastic()}\spxextra{HDF5\_BLS\_treat.Models method}, \hyperpage{94}
+
+  \indexspace
+  \bigletter M
+  \item \spxentry{mark\_errors\_BLT()}\spxextra{HDF5\_BLS\_treat.Treat method}, \hyperpage{99}
+  \item \spxentry{mark\_errors\_linewidth()}\spxextra{HDF5\_BLS\_treat.Treat method}, 
+		\hyperpage{99}
+  \item \spxentry{mark\_errors\_shift()}\spxextra{HDF5\_BLS\_treat.Treat method}, \hyperpage{99}
+  \item \spxentry{mark\_errors\_std\_BLT()}\spxextra{HDF5\_BLS\_treat.Treat method}, \hyperpage{99}
+  \item \spxentry{mark\_errors\_std\_linewidth()}\spxextra{HDF5\_BLS\_treat.Treat method}, 
+		\hyperpage{99}
+  \item \spxentry{mark\_errors\_std\_shift()}\spxextra{HDF5\_BLS\_treat.Treat method}, 
+		\hyperpage{99}
+  \item \spxentry{mark\_point\_error()}\spxextra{HDF5\_BLS\_treat.Treat method}, \hyperpage{100}
+  \item \spxentry{Models}\spxextra{class in HDF5\_BLS\_treat}, \hyperpage{92}
+  \item \spxentry{models}\spxextra{HDF5\_BLS\_treat.Models attribute}, \hyperpage{94}
+  \item \spxentry{module}
+    \subitem \spxentry{HDF5\_BLS.errors}, \hyperpage{81}
+    \subitem \spxentry{HDF5\_BLS.load\_data}, \hyperpage{79}
+  \item \spxentry{move()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{78}
+  \item \spxentry{move\_channel\_dimension\_to\_last()}\spxextra{HDF5\_BLS.Wrapper method}, 
+		\hyperpage{78}
+  \item \spxentry{multi\_fit\_all\_inelastic()}\spxextra{HDF5\_BLS\_treat.Treat method}, 
+		\hyperpage{100}
+
+  \indexspace
+  \bigletter N
+  \item \spxentry{need\_for\_repack}\spxextra{HDF5\_BLS.Wrapper attribute}, \hyperpage{65}
+  \item \spxentry{normalize\_data()}\spxextra{HDF5\_BLS\_treat.Treat method}, \hyperpage{100}
+
+  \indexspace
+  \bigletter P
+  \item \spxentry{print\_metadata()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{78}
+  \item \spxentry{print\_structure()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{78}
+
+  \indexspace
+  \bigletter R
+  \item \spxentry{repack()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{78}
+
+  \indexspace
+  \bigletter S
+  \item \spxentry{save}\spxextra{HDF5\_BLS.Wrapper attribute}, \hyperpage{65}
+  \item \spxentry{save\_as\_hdf5()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{78}
+  \item \spxentry{save\_properties\_csv()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{78}
+  \item \spxentry{save\_stored\_script()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{79}
+  \item \spxentry{set\_x\_y()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}, \hyperpage{84}
+  \item \spxentry{silent\_clear\_points()}\spxextra{HDF5\_BLS\_analyse.Analyse\_general method}, 
+		\hyperpage{86}
+  \item \spxentry{silent\_clear\_points()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}, 
+		\hyperpage{91}
+  \item \spxentry{silent\_create\_algorithm()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}, 
+		\hyperpage{84}
+  \item \spxentry{silent\_create\_algorithm()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}, 
+		\hyperpage{91}
+  \item \spxentry{silent\_move\_step()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}, 
+		\hyperpage{85}
+  \item \spxentry{silent\_move\_step()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}, 
+		\hyperpage{91}
+  \item \spxentry{silent\_open\_algorithm()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}, 
+		\hyperpage{85}
+  \item \spxentry{silent\_open\_algorithm()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}, 
+		\hyperpage{91}
+  \item \spxentry{silent\_remove\_step()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}, 
+		\hyperpage{85}
+  \item \spxentry{silent\_remove\_step()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}, 
+		\hyperpage{91}
+  \item \spxentry{silent\_return\_string\_algorithm()}\spxextra{HDF5\_BLS\_analyse.Analyse\_general method}, 
+		\hyperpage{86}
+  \item \spxentry{silent\_return\_string\_algorithm()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}, 
+		\hyperpage{91}
+  \item \spxentry{silent\_run\_algorithm()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}, 
+		\hyperpage{85}
+  \item \spxentry{silent\_run\_algorithm()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}, 
+		\hyperpage{92}
+  \item \spxentry{silent\_save\_algorithm()}\spxextra{HDF5\_BLS\_analyse.Analyse\_backend method}, 
+		\hyperpage{85}
+  \item \spxentry{silent\_save\_algorithm()}\spxextra{HDF5\_BLS\_treat.Treat\_backend method}, 
+		\hyperpage{92}
+  \item \spxentry{single\_fit\_all\_inelastic()}\spxextra{HDF5\_BLS\_treat.Treat method}, 
+		\hyperpage{100}
+  \item \spxentry{store\_script()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{79}
+
+  \indexspace
+  \bigletter T
+  \item \spxentry{Treat}\spxextra{class in HDF5\_BLS\_treat}, \hyperpage{95}
+  \item \spxentry{Treat\_backend}\spxextra{class in HDF5\_BLS\_treat}, \hyperpage{89}
+  \item \spxentry{TreatmentError}, \hyperpage{95}
+
+  \indexspace
+  \bigletter U
+  \item \spxentry{update\_property()}\spxextra{HDF5\_BLS.Wrapper method}, \hyperpage{79}
+
+  \indexspace
+  \bigletter W
+  \item \spxentry{Wrapper}\spxextra{class in HDF5\_BLS}, \hyperpage{65}
+  \item \spxentry{WrapperError}, \hyperpage{82}
+  \item \spxentry{WrapperError\_ArgumentType}, \hyperpage{82}
+  \item \spxentry{WrapperError\_FileNotFound}, \hyperpage{82}
+  \item \spxentry{WrapperError\_Overwrite}, \hyperpage{82}
+  \item \spxentry{WrapperError\_Save}, \hyperpage{82}
+  \item \spxentry{WrapperError\_StructureError}, \hyperpage{82}
+
+\end{sphinxtheindex}

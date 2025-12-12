@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setting up the development environment on Visual Studio Code &mdash; HDF5_BLS v1.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=f8b40d97" />
+
+  
+    <link rel="shortcut icon" href="../../_static/myicon.png"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e562d664"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Adding a new file format to the HDF5_BLS library" href="add_file_format.html" />
+    <link rel="prev" title="Presentation of the project for developers" href="presentation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HDF5_BLS
+              <img src="../../_static/myicon.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">The HDF5\_BLS project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_nutshell.html">The project in a nutshell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project.html">Project development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_format.html">The file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../normalization.html">Normalization rules for the BioBrillouin community</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_package.html">The HDF5_BLS package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_processing.html">Data Processing with HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_analyse_package.html">The HDF5_BLS_analyse package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hdf5_bls_treat_package.html">The HDF5_BLS_treat package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">Presentation of the project for developers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting up the development environment on Visual Studio Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-vs-code-for-python-development">Setting up VS Code for Python development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-vs-code">Installing VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-python-extension-in-vs-code">Installing Python extension in VS Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-your-own-github-branch-and-copy-of-the-hdf5-bls-repository">Creating your own GitHub branch and copy of the HDF5_BLS repository</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-git-extension-in-vs-code">Installing the Git extension in VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-the-hdf5-bls-repository-locally">Creating the HDF5_BLS repository locally</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-the-virtual-environment">Creating the virtual environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clone-the-github-repository">Clone the GitHub repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#branching-the-main-repository-of-the-project">Branching the main repository of the project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-the-packages-in-editable-mode">Install the packages in editable mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-the-paths-to-the-sources-of-the-three-packages-to-the-python-interpreter-of-the-vs-code-workspace">Adding the paths to the sources of the three packages to the Python interpreter of the VS Code workspace</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-the-repository-for-your-scripts">Creating the repository for your scripts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-your-local-repository-for-using-the-hdf5-bls-package">Create your local repository for using the HDF5_BLS package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-virtual-environment-of-your-repository">Create the virtual environment of your repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Install the packages in editable mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Adding the paths to the sources of the three packages to the Python interpreter of the VS Code workspace</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="add_file_format.html">Adding a new file format to the HDF5_BLS library</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../summary_HDF5_BLS.html">HDF5_BLS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../summary_HDF5_BLS_analyse.html">HDF5_BLS_analyse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../summary_HDF5_BLS_treat.html">HDF5_BLS_treat</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HDF5_BLS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Setting up the development environment on Visual Studio Code</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/developer/setup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setting-up-the-development-environment-on-visual-studio-code">
+<span id="developer-setup-vscode"></span><h1>Setting up the development environment on Visual Studio Code<a class="headerlink" href="#setting-up-the-development-environment-on-visual-studio-code" title="Link to this heading"></a></h1>
+<p>This project is composed of three independent packages (plus the GUI and the web viewer, but we will not detail them here):</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">HDF5_BLS_analyse</span></code>: A package to analyse BLS data (extract power spectra) from raw data.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">HDF5_BLS_treat</span></code>: A package to treat BLS data (process power spectra to obtain relevant quantities).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">HDF5_BLS</span></code>: A package to store BLS data in a single HDF5 file.</p></li>
+</ul>
+<p>The development of these packages is done in separate repositories, which are all hosted on the same project on GitHub. The following instructions are meant to help developers to set up their development environment on Visual Studio Code, so that they can contribute to the development of the project while using their additions to the code without having to wait for the code to be merged in the main repository.</p>
+<p>We encourage separating the repository of the HDF5_BLS package from the repository where your scripts are stored. Therefore, we will present a solution where two virtual environments are used: one for the HDF5_BLS package, and one for your scripts. In both environments, the packages will be installed in editable mode, so that your modifications are directly reflected in the code, but any addition on the virtual environment of the scripts used (installing custom packages for visualization or statistical analysis, for example) will not be added to the VE of your copy of the HDF5_BLS package.</p>
+<p>Schematically, we will show you how to:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Setting up VS Code for Python development</dt><dd><ul>
+<li><p>Install VS Code</p></li>
+<li><p>Install the Python extension in VS Code</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Creating your own GitHub branch and copy of the HDF5_BLS repository</dt><dd><ul>
+<li><p>Install the Git extension in VS Code</p></li>
+<li><p>Clone the GitHub repository</p></li>
+<li><p>Branch the main repository of the project</p></li>
+<li><p>Create a virtual environment</p></li>
+<li><p>Install the packages in editable mode</p></li>
+<li><p>Add the paths to the sources of the three packages to the Python interpreter of the VS Code workspace</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Creating the repository for your scripts</dt><dd><ul>
+<li><p>Install the packages in editable mode</p></li>
+<li><p>Add the paths to the sources of the three packages to the Python interpreter of the VS Code workspace</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<section id="setting-up-vs-code-for-python-development">
+<h2>Setting up VS Code for Python development<a class="headerlink" href="#setting-up-vs-code-for-python-development" title="Link to this heading"></a></h2>
+<section id="installing-vs-code">
+<h3>Installing VS Code<a class="headerlink" href="#installing-vs-code" title="Link to this heading"></a></h3>
+<p>First, you need to install VS Code. You can download it from the <a class="reference external" href="https://code.visualstudio.com/">official website</a>. The installation is straightforward: follow the instructions on the website.</p>
+</section>
+<section id="installing-python-extension-in-vs-code">
+<h3>Installing Python extension in VS Code<a class="headerlink" href="#installing-python-extension-in-vs-code" title="Link to this heading"></a></h3>
+<p>VS Code comes with a Python extension, which allows you to write Python code in the editor. You can install it by clicking on the extensions button on the left side of the window, and then searching for “Python”. You should see the Python extension in the list of extensions. Click on it to install it.</p>
+<a class="reference internal image-reference" href="../../_images/install_python_extension.png"><img alt="../../_images/install_python_extension.png" class="align-center" src="../../_images/install_python_extension.png" style="width: 80%;" />
+</a>
+</section>
+</section>
+<section id="creating-your-own-github-branch-and-copy-of-the-hdf5-bls-repository">
+<h2>Creating your own GitHub branch and copy of the HDF5_BLS repository<a class="headerlink" href="#creating-your-own-github-branch-and-copy-of-the-hdf5-bls-repository" title="Link to this heading"></a></h2>
+<section id="installing-the-git-extension-in-vs-code">
+<h3>Installing the Git extension in VS Code<a class="headerlink" href="#installing-the-git-extension-in-vs-code" title="Link to this heading"></a></h3>
+<p>The first step is to install the Git extension in VS Code. You can do this by clicking on the extensions button on the left side of the window, and then searching for “Git”. We recommend using the “GitHub Actions” extension, which is a Git extension that allows you to use GitHub Actions in VS Code. You can install it by clicking on the extensions button on the left side of the window, and then searching for “GitHub Actions”. You should see the GitHub Actions extension in the list of extensions. Click on it to install it.</p>
+</section>
+<section id="creating-the-hdf5-bls-repository-locally">
+<h3>Creating the HDF5_BLS repository locally<a class="headerlink" href="#creating-the-hdf5-bls-repository-locally" title="Link to this heading"></a></h3>
+<p>Now that everything is set up, you can create a local repository for the HDF5_BLS package where you will store your additions to the code. You can just click on File &gt; Open Folder and then create and select the folder where you want to create the repository.</p>
+</section>
+<section id="creating-the-virtual-environment">
+<h3>Creating the virtual environment<a class="headerlink" href="#creating-the-virtual-environment" title="Link to this heading"></a></h3>
+<p>A very important step at this stage is to create a virtual environment for the HDF5_BLS package. This makes sure that the packages are installed in a way that does not interfere with the local installation of Python on your computer.</p>
+<p>VS Code comes with a Python extension, which automatically creates a virtual environment for you. Use this tool by opening the command palette (Ctrl+Shift+P) and typing “Python: Create Environment…”. We recommend using Python 3.9 or above. You should see a new folder called “.venv” in your workspace. This is the virtual environment that you will use for the HDF5_BLS package.</p>
+</section>
+<section id="clone-the-github-repository">
+<h3>Clone the GitHub repository<a class="headerlink" href="#clone-the-github-repository" title="Link to this heading"></a></h3>
+<p>You can now safely clone the GitHub repository of the project. You can do this by clicking on the “Source Control” button on the left side of the window, then click on the three dots right to the “Changes” text, and then clicking on “Clone”. You can then copy and paste the URL of the repository: <a class="reference external" href="https://github.com/bio-brillouin/HDF5_BLS">https://github.com/bio-brillouin/HDF5_BLS</a> in the text field that appears. This will clone the repository in the folder you have created in the previous step. After the cloning is done, you will see all the folders and files of the repository in your VS Code workspace.</p>
+</section>
+<section id="branching-the-main-repository-of-the-project">
+<h3>Branching the main repository of the project<a class="headerlink" href="#branching-the-main-repository-of-the-project" title="Link to this heading"></a></h3>
+<p>Although you can decide to keep your addition to the HDF5_BLS package to yourself, if you want to contribute to the development of the project, you will need to create a branch of the main repository of the project. This will allow you to work on your own additions to the code, and then send merge requests when your additions are ready to be integrated in the main repository.</p>
+<p>To branch the main repository of the project, you can click on the “Source Control” button on the left side of the window, and then on the “Branch &gt; Create Branch”. You can then name the branch whatever you want.</p>
+</section>
+<section id="install-the-packages-in-editable-mode">
+<h3>Install the packages in editable mode<a class="headerlink" href="#install-the-packages-in-editable-mode" title="Link to this heading"></a></h3>
+<p>The different packages of the HDF5_BLS project are not yet installed in your virtual environment at this step. We encourage you to install them in editable mode. This will allow you to make changes to the code and see the results immediately by simply importing the libraries in Python scripts.</p>
+<p>To install it the different packages you need to move to the different directories, and then install the packages using the following command in the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="adding-the-paths-to-the-sources-of-the-three-packages-to-the-python-interpreter-of-the-vs-code-workspace">
+<h3>Adding the paths to the sources of the three packages to the Python interpreter of the VS Code workspace<a class="headerlink" href="#adding-the-paths-to-the-sources-of-the-three-packages-to-the-python-interpreter-of-the-vs-code-workspace" title="Link to this heading"></a></h3>
+<p>Once the packages are installed in editable mode, you will need to “tell” your code editor where the sources of the packages are located (since the modules are installed in edit mode). There are different ways to do this, the one we recommend is to create “aliases” of the source directories of the packages and place them in the site-packages directory of your virtual environment. This way, when you import a module from the package, your editor will automatically find the source code of the package and give you all the nice autocompletion features to use it.</p>
+<p>You can create the aliases either by:
+- finding the virtual environment directory (the one where the <code class="docutils literal notranslate"><span class="pre">.venv</span></code> directory is located) and then the
+- locating thelib/python.x/site-packages directory of the virtual environment (the “x” in python.x is the version of python you are using)
+- creating the aliases of the sources in your file system (here we will use the “_HDF5_BLS” directory of the HDF5_BLS package, the “_HDF5_BLS_analyse” directory of the HDF5_BLS_analyse package and the “_HDF5_BLS_treat” directory of the HDF5_BLS_treat package)
+- moving the aliases to the site-packages directory of the virtual environment
+- renaming the aliases to the name of the package (here “HDF5_BLS”, “HDF5_BLS_analyse” and “HDF5_BLS_treat”)</p>
+<p>Alternatively, you can create the aliases by using the command line:
+- first navigate to the virtual environment directory (the one where the <code class="docutils literal notranslate"><span class="pre">.venv</span></code> directory is located)
+- then navigate to the lib/python.x/site-packages directory of the virtual environment (the “x” in python.x is the version of python you are using)
+- then copy the path to the _HDF5_BLS directory of the HDF5_BLS package (the path should look something like this: <code class="docutils literal notranslate"><span class="pre">.../Project_HDF5_BLS_release/packages/HDF5_BLS/src/_HDF5_BLS</span></code>)
+- then create a symbolic link to the HDF5_BLS package source directory by running the following command in the terminal: <code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-s</span> <span class="pre">/path/to/HDF5_BLS/src/_HDF5_BLS</span> <span class="pre">HDF5_BLS</span></code>
+- repeat the same steps for the other two packages.</p>
+<p>Restart your code editor and you should be good to go. You can for example try to import the HDF5_BLS package in your code editor, and autocompletion should work as expected.</p>
+</section>
+</section>
+<section id="creating-the-repository-for-your-scripts">
+<h2>Creating the repository for your scripts<a class="headerlink" href="#creating-the-repository-for-your-scripts" title="Link to this heading"></a></h2>
+<p>Now that you have a working copy of the HDF5_BLS repository you can edit locally, we recommend using a separate repository for the scripts that will use it to keep everything clean.</p>
+<section id="create-your-local-repository-for-using-the-hdf5-bls-package">
+<h3>Create your local repository for using the HDF5_BLS package<a class="headerlink" href="#create-your-local-repository-for-using-the-hdf5-bls-package" title="Link to this heading"></a></h3>
+<p>Start by creating a repository that will contain your scripts in your file system.</p>
+</section>
+<section id="create-the-virtual-environment-of-your-repository">
+<h3>Create the virtual environment of your repository<a class="headerlink" href="#create-the-virtual-environment-of-your-repository" title="Link to this heading"></a></h3>
+<p>Now you need to create a virtual environment for your repository. Aside from being good practice, this will allow you to install the modules of the HDF5_BLS package in editable mode, so that you can make changes to the code and see the results immediately. To do so, you can use the following command in the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</pre></div>
+</div>
+<p>This will create a virtual environment in the <code class="docutils literal notranslate"><span class="pre">.venv</span></code> directory of your repository. You can then activate it by running the following command in the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>Install the packages in editable mode<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>You can now install the packages in editable mode. To do so, open your terminal and move to the folder containing the local version of the HDF5_BLS repository. Then, install all three packages in editable mode by running the following command in the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>packages/HDF5_BLS
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>packages/HDF5_BLS_analyse
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>packages/HDF5_BLS_treat
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>Adding the paths to the sources of the three packages to the Python interpreter of the VS Code workspace<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>Once the packages are installed in editable mode, you will need to “tell” your code editor where the sources of the packages are located (since the modules are installed in edit mode). There are different ways to do this, but as before, the one we recommend is to create “aliases” of the source directories of the packages and place them in the site-packages directory of your virtual environment. This way, when you import a module from the package, your editor will automatically find the source code of the package and give you all the nice autocompletion features to use it.</p>
+<p>You can create the aliases either by:
+- finding the virtual environment directory (the one where the <code class="docutils literal notranslate"><span class="pre">.venv</span></code> directory is located) and then the
+- locating thelib/python.x/site-packages directory of the virtual environment (the “x” in python.x is the version of python you are using)
+- creating the aliases of the sources in your file system (here we will use the “_HDF5_BLS” directory of the HDF5_BLS package, the “_HDF5_BLS_analyse” directory of the HDF5_BLS_analyse package and the “_HDF5_BLS_treat” directory of the HDF5_BLS_treat package)
+- moving the aliases to the site-packages directory of the virtual environment
+- renaming the aliases to the name of the package (here “HDF5_BLS”, “HDF5_BLS_analyse” and “HDF5_BLS_treat”)</p>
+<p>Alternatively, you can create the aliases by using the command line:
+- first navigate to the virtual environment directory (the one where the <code class="docutils literal notranslate"><span class="pre">.venv</span></code> directory is located)
+- then navigate to the lib/python.x/site-packages directory of the virtual environment (the “x” in python.x is the version of python you are using)
+- then copy the path to the _HDF5_BLS directory of the HDF5_BLS package (the path should look something like this: <code class="docutils literal notranslate"><span class="pre">.../Project_HDF5_BLS_release/packages/HDF5_BLS/src/_HDF5_BLS</span></code>)
+- then create a symbolic link to the HDF5_BLS package source directory by running the following command in the terminal: <code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-s</span> <span class="pre">/path/to/HDF5_BLS/src/_HDF5_BLS</span> <span class="pre">HDF5_BLS</span></code>
+- repeat the same steps for the other two packages.</p>
+<p>Finally, restart your code editor and you should be good to go. You can for example try to import the HDF5_BLS package in your code editor, and autocompletion should work as expected.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="presentation.html" class="btn btn-neutral float-left" title="Presentation of the project for developers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="add_file_format.html" class="btn btn-neutral float-right" title="Adding a new file format to the HDF5_BLS library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pierre Bouvet.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
